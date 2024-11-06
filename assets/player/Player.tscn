@@ -15,6 +15,7 @@ height = 24.896
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_mask = 3
 script = ExtResource("1_ktc6q")
 
 [node name="Sprites" type="AnimatedSprite2D" parent="."]

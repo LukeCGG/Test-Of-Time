@@ -187,6 +187,7 @@ radius = 24.1868
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(0, -16)
+collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
@@ -221,7 +222,6 @@ navigation_layers = 17
 path_postprocessing = 1
 avoidance_layers = 2
 avoidance_mask = 2
-debug_enabled = true
 
 [node name="WanderTimer" type="Timer" parent="."]
 wait_time = 5.0

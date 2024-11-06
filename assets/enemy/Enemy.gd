@@ -19,13 +19,13 @@ func _ready() -> void:
 	makepath()
 
 func _physics_process(delta: float) -> void:
-	var dir = to_local(nav.get_next_path_position()).normalized()
+	var direction = to_local(nav.get_next_path_position()).normalized()
 	
-	velocity = velocity.lerp(dir * speeder, accel * delta)
+	velocity = velocity.lerp(direction * speeder, accel * delta)
 		
-	if dir.x < 0:
+	if direction.x < 0:
 		animated_sprite_2d.flip_h = true
-	elif dir.x > 0:
+	elif direction.x > 0:
 		animated_sprite_2d.flip_h = false
 			
 	if nav.is_navigation_finished() and not hitting:
@@ -80,7 +80,7 @@ func _on_hit_detection_body_entered(body: Node2D) -> void:
 			$HitTimer.start()
 		else:
 			speeder = speed
-		if speeder == 1000:
+		if speeder == 500:
 			#print("I hit the player!")
 			SignalBus.emit_signal('playerHit')
 			hitting = false
