@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cobswqncgthnx"
-path="res://.godot/imported/Light.png-756c51468e4883faf3999ad030dae6a7.ctex"
+uid="uid://cay0405gn4d67"
+path="res://.godot/imported/Floors.png-010a9b87c76d74a357401ab55f97ee56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player_character/assets & scripts/Light.png"
-dest_files=["res://.godot/imported/Light.png-756c51468e4883faf3999ad030dae6a7.ctex"]
+source_file="res://assets/tile_sets/room/Floors.png"
+dest_files=["res://.godot/imported/Floors.png-010a9b87c76d74a357401ab55f97ee56.ctex"]
 
 [params]
 

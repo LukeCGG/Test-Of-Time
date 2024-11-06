@@ -4,7 +4,7 @@ extends CharacterBody2D
 var accel = 5
 var speeder = speed
 @export var wanderDistance : int = 200
-@onready var playerBody = $"../MainCharacter"
+@onready var playerBody = $"../Player"
 var hitting = false
 
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
@@ -48,12 +48,12 @@ func _on_timer_timeout() -> void:
 	makepath()
 
 func _on_detection_zone_body_entered(body: Node2D) -> void:
-	if body.name == "MainCharacter":
+	if body.name == "Player":
 		playerBody = body
 		$ChaseTimer.start()
 
 func _on_detection_zone_body_exited(body: Node2D) -> void:
-	if body.name == "MainCharacter":
+	if body.name == "Player":
 		#print("Lost Sight")
 		$ChaseTimer.stop()
 		$WanderTimer.wait_time = 10
@@ -72,7 +72,7 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
 
 func _on_hit_detection_body_entered(body: Node2D) -> void:
-	if body.name == "MainCharacter":
+	if body.name == "Player":
 		if $HitTimer.is_stopped() and $HitTimer/CooldownTimer.is_stopped():
 			hitting = true
 			speeder = 0
@@ -89,7 +89,7 @@ func _on_hit_timer_timeout() -> void:
 	$HitTimer/CooldownTimer.start()
 	#print("attempting hit!")
 	for body in hit_detection.get_overlapping_bodies():
-		if body.name == "MainCharacter":
+		if body.name == "Player":
 			speeder = speed
 			#print("I hit the player!")
 			SignalBus.emit_signal('playerHit')
@@ -105,11 +105,11 @@ func _on_hit_timer_timeout() -> void:
 	
 func _on_cooldown_timer_timeout() -> void:
 	for body in hit_detection.get_overlapping_bodies():
-		if body.name == "MainCharacter":
+		if body.name == "Player":
 			_on_hit_detection_body_entered(body)
 			
 func _check_hit():
 	for body in hit_detection.get_overlapping_bodies():
-		if body.name == "MainCharacter" and hitting:
+		if body.name == "Player" and hitting:
 			#print("I hit the player!")
 			SignalBus.emit_signal('playerHit')

@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-@onready var playerSpriteNode: Sprite2D = $playerSprites
-@onready var playerAnimationsNode: AnimationPlayer = $playerAnimations
+@onready var playerSpriteNode: Sprite2D = $Sprites
 
 @export var baseMoveSpeed: float = 100.0
 @export var sprintScalar: float = 1.5
@@ -34,7 +33,7 @@ const MOVING_TO_IDLE = {
 }
 
 func _ready():
-	playerAnimationsNode.current_animation = "idle_east_normal"
+	playerSpriteNode.play('idle')
 	SignalBus.connect('playerHit', _player_hit)
 
 func _input(_event: InputEvent):
