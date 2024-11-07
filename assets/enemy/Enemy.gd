@@ -15,8 +15,8 @@ var hitting = false
 
 func _ready() -> void:
 	#set_physics_process(false)
-	#Go in a direction
 	makepath()
+	SignalBus.connect('playerDied', _player_died)
 
 func _physics_process(delta: float) -> void:
 	var direction = to_local(nav.get_next_path_position()).normalized()
@@ -113,3 +113,8 @@ func _check_hit():
 		if body.name == "Player" and hitting:
 			#print("I hit the player!")
 			SignalBus.emit_signal('playerHit')
+
+func _player_died():
+	$ChaseTimer.stop()
+	$WanderTimer.wait_time = 4
+	$WanderTimer.start()

@@ -4,6 +4,10 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.1
 
+var died = false
+
+@onready var collision: CollisionShape2D = $Collision
+
 func _ready():
 	SignalBus.connect('playerHit', _player_hit)
 
@@ -24,16 +28,23 @@ func get_input():
 	return input
 
 func _physics_process(_delta):
-	var direction = get_input()
-	if direction.length() > 0:
-		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
-	else:
+	if died:
 		velocity = velocity.lerp(Vector2.ZERO, friction)
+	else:
+		var direction = get_input()
+		if direction.length() > 0:
+			velocity = velocity.lerp(direction.normalized() * speed, acceleration)
+		else:
+			velocity = velocity.lerp(Vector2.ZERO, friction)
 	move_and_slide()
 	
 func _player_hit():
 	#For when player has been hit by enemy
 	print("I've been hit!")
-	$Label.visible = true
-	await get_tree().create_timer(1.0).timeout
-	$Label.visible = false
+	died = true
+	#collision.disabled = true
+	self.name = "DeadPlayer" + str(randi())
+	SignalBus.emit_signal('playerDied')
+	#Play death animation
+	await get_tree().create_timer(3.0).timeout
+	
