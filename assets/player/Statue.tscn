@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://0huffmo5gw2l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f5ohe"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0y74q"]
+height = 24.896
+
+[node name="Statues" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 3
+
+[node name="Sprites" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_f5ohe")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+scale = Vector2(0.562339, 0.562339)
+shape = SubResource("CapsuleShape2D_0y74q")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.65834, 0.65834, 0.65834, 1)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+vertices = PackedVector2Array(0, -7, -4, -6, -5, 0, -4, 6, 0, 7, 4, 6, 5, 0, 4, -6)
+affect_navigation_mesh = true
+carve_navigation_mesh = true

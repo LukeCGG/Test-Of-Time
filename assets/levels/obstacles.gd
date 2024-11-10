@@ -3,6 +3,9 @@ extends TileMapLayer
 @onready var walls: TileMapLayer = $"../Walls"
 var blockages : Array = []
 
+func _ready() -> void:
+	pass
+
 func _use_tile_data_runtime_update(coords: Vector2i) -> bool:
 	blockages = walls.get_used_cells()
 	return coords in blockages

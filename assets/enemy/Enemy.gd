@@ -17,6 +17,7 @@ func _ready() -> void:
 	#set_physics_process(false)
 	makepath()
 	SignalBus.connect('playerDied', _player_died)
+	SignalBus.connect('playerHit', _player_hit)
 
 func _physics_process(delta: float) -> void:
 	var direction = to_local(nav.get_next_path_position()).normalized()
@@ -118,3 +119,10 @@ func _player_died():
 	$ChaseTimer.stop()
 	$WanderTimer.wait_time = 4
 	$WanderTimer.start()
+	
+func _player_hit():
+	$DetectionZone.monitoring = false
+	$HitDetection.monitoring = false
+	await get_tree().create_timer(3.5).timeout
+	$DetectionZone.monitoring = true
+	$HitDetection.monitoring = true

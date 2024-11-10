@@ -4,9 +4,11 @@ extends CharacterBody2D
 @export var friction = 0.1
 @export var acceleration = 0.1
 
-var died = false
-
 @onready var collision: CollisionShape2D = $Collision
+@onready var spawn: Marker2D = $"../Spawn"
+@export var statue: PackedScene = preload("res://assets/player/Statue.tscn")
+
+var died = false
 
 func _ready():
 	SignalBus.connect('playerHit', _player_hit)
@@ -43,8 +45,12 @@ func _player_hit():
 	print("I've been hit!")
 	died = true
 	#collision.disabled = true
-	self.name = "DeadPlayer" + str(randi())
+	#self.name = "DeadPlayer" + str(randi())
 	SignalBus.emit_signal('playerDied')
 	#Play death animation
 	await get_tree().create_timer(3.0).timeout
-	
+	var instance = statue.instantiate()
+	instance.position = position
+	get_parent().add_child(instance)
+	position = spawn.position
+	died = false

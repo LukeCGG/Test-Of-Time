@@ -220,8 +220,6 @@ shape = SubResource("CircleShape2D_jhkyx")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 17
 path_postprocessing = 1
-avoidance_layers = 2
-avoidance_mask = 2
 debug_enabled = true
 
 [node name="WanderTimer" type="Timer" parent="."]
