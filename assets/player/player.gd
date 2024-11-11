@@ -1,17 +1,24 @@
 extends CharacterBody2D
-
-@export var speed = 60
-@export var friction = 0.1
-@export var acceleration = 0.1
+## Character controller
 
 @onready var collision: CollisionShape2D = $Collision
 @onready var spawn: Marker2D = $"../Spawn"
-@export var statue: PackedScene = preload("res://assets/player/Statue.tscn")
+@onready var statue: PackedScene = preload("res://assets/player/Statue.tscn")
 
 var died = false
+var Chalk = Line2D.new()
+
+@export_category("Movement")
+@export var speed : int = 60 ## Player max speed
+@export var friction : float = 0.1 ## How fast player slows down when not moving
+@export var acceleration : float = 0.1 ## How long it takes for player to reach full speed
+
+@export_category("Upgrades")
+@export var upgradeCHALK : bool = true ## false = Not Unlocked/Active [br]Draws line where player has been
 
 func _ready():
 	SignalBus.connect('playerHit', _player_hit)
+	new_line()
 
 func get_input():
 	var input = Vector2()
@@ -38,12 +45,16 @@ func _physics_process(_delta):
 			velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
+	if upgradeCHALK and not velocity == Vector2(0, 0) and not died:
+		Chalk.add_point(position)
 	move_and_slide()
 	
 func _player_hit():
 	#For when player has been hit by enemy
 	print("I've been hit!")
 	died = true
+	#process_mode = PROCESS_MODE_DISABLED
+	new_line()
 	#collision.disabled = true
 	#self.name = "DeadPlayer" + str(randi())
 	SignalBus.emit_signal('playerDied')
@@ -54,3 +65,11 @@ func _player_hit():
 	get_parent().add_child(instance)
 	position = spawn.position
 	died = false
+	#process_mode = PROCESS_MODE_INHERIT
+	
+func new_line():
+	Chalk = Line2D.new()
+	Chalk.width = 1
+	Chalk.default_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
+	Chalk.z_index = -1
+	get_parent().add_child(Chalk)
