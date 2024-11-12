@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://0huffmo5gw2l"]
+[gd_scene load_steps=3 format=3 uid="uid://0huffmo5gw2l"]
+
+[ext_resource type="Texture2D" uid="uid://bdjmt7imibpte" path="res://assets/player/TempStatue.png" id="1_44fiw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0y74q"]
-height = 24.896
+radius = 17.7829
+height = 46.2355
 
 [node name="Statues" type="StaticBody2D"]
 y_sort_enabled = true
@@ -9,12 +12,16 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("1_44fiw")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
 scale = Vector2(0.562339, 0.562339)
 shape = SubResource("CapsuleShape2D_0y74q")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -29,6 +36,7 @@ grow_vertical = 2
 color = Color(0.65834, 0.65834, 0.65834, 1)
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-vertices = PackedVector2Array(0, -7, -4, -6, -5, 0, -4, 6, 0, 7, 4, 6, 5, 0, 4, -6)
+position = Vector2(0, -14)
+vertices = PackedVector2Array(0, -14, -8, -10, -10, 0, -8, 12, 0, 13, 8, 12, 10, 0, 8, -10)
 affect_navigation_mesh = true
 carve_navigation_mesh = true

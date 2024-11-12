@@ -23,6 +23,7 @@ SignalBus="*res://assets/globals/SignalBus.gd"
 [display]
 
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [input]
@@ -61,4 +62,3 @@ SPRINT={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)

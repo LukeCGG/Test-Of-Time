@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var collision: CollisionShape2D = $Collision
 @onready var spawn: Marker2D = $"../Spawn"
 @onready var statue: PackedScene = preload("res://assets/player/Statue.tscn")
+@onready var sprites: AnimatedSprite2D = $Sprites
 
 var died = false
 var Chalk = Line2D.new()
@@ -46,7 +47,7 @@ func _physics_process(_delta):
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
 	if upgradeCHALK and not velocity.length() <= 3 and not died:
-		Chalk.add_point(position)
+		Chalk.add_point(Vector2(position.x + 3, position.y - 2))
 		#Chalk.texture.set('width', Chalk.texture.get_width()+15)
 	move_and_slide()
 	
@@ -54,6 +55,7 @@ func _player_hit():
 	#For when player has been hit by enemy
 	print("I've been hit!")
 	died = true
+	sprites.play('statue')
 	#process_mode = PROCESS_MODE_DISABLED
 	#collision.disabled = true
 	#self.name = "DeadPlayer" + str(randi())
@@ -67,12 +69,14 @@ func _player_hit():
 	SignalBus.emit_signal('newGeneration')
 	new_line()
 	died = false
+	sprites.play('idle')
 	#process_mode = PROCESS_MODE_INHERIT
 	
 func new_line():
 	Chalk = Line2D.new()
 	Chalk.set_script(preload("res://assets/player/chalk_line.gd"))
 	Chalk.width = 3
+	Chalk.z_index = -1
 	#Chalk.default_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
 	Chalk.default_color = Color(1,1,1,0.70)
 	Chalk.texture = preload("res://assets/player/ChalkNoise.tres")
