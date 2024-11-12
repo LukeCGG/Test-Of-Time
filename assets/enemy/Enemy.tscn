@@ -1,4 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://cd084bgui54b4"]
+[gd_scene load_steps=32 format=3 uid="uid://cd084bgui54b4"]
+
+[ext_resource type="Script" path="res://assets/enemy/enemyCASE.gd" id="1_dwo61"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kgyai"]
 region = Rect2(768, 256, 128, 128)
@@ -189,6 +191,7 @@ collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
+script = ExtResource("1_dwo61")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ha18s")

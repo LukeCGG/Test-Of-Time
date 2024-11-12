@@ -1,4 +1,5 @@
 extends Node
+## Signals accessed by instanced nodes
 
 signal playerHit(damage) ## Triggered when player hit by enemy[br]Causes player death
 signal playerDied ## Triggered after player has run out of life and places statue
