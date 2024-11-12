@@ -5,7 +5,8 @@ extends CharacterBody2D
 var accel = 5
 var speeder = speed
 @export var wanderDistance : int = 200
-@onready var playerBody = $"../Player"
+@export var damage : int = 50
+var playerBody
 var hitting = false
 
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
@@ -84,7 +85,7 @@ func _on_hit_detection_body_entered(body: Node2D) -> void:
 			speeder = speed
 		if speeder == 500:
 			#print("I hit the player!")
-			SignalBus.emit_signal('playerHit')
+			SignalBus.playerHit.emit(damage)
 			hitting = false
 
 func _on_hit_timer_timeout() -> void:
@@ -94,7 +95,7 @@ func _on_hit_timer_timeout() -> void:
 		if body.name == "Player":
 			speeder = speed
 			#print("I hit the player!")
-			SignalBus.emit_signal('playerHit')
+			SignalBus.playerHit.emit(damage)
 			hitting = false
 			return
 	nav.target_position = playerBody.position
@@ -114,16 +115,16 @@ func _check_hit():
 	for body in hit_detection.get_overlapping_bodies():
 		if body.name == "Player" and hitting:
 			#print("I hit the player!")
-			SignalBus.emit_signal('playerHit')
+			SignalBus.playerHit.emit(damage)
 
 func _player_died():
 	$ChaseTimer.stop()
-	$WanderTimer.wait_time = 4
-	$WanderTimer.start()
-	
-func _player_hit():
 	$DetectionZone.monitoring = false
 	$HitDetection.monitoring = false
-	await get_tree().create_timer(3.5).timeout
+	await get_tree().create_timer(4).timeout
 	$DetectionZone.monitoring = true
 	$HitDetection.monitoring = true
+	$WanderTimer.start()
+	
+func _player_hit(_damage):
+	pass

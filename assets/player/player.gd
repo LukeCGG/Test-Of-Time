@@ -9,6 +9,7 @@ extends CharacterBody2D
 var died = false
 var Chalk = Line2D.new()
 
+@export var health : int = 100
 @export_category("Movement")
 @export var speed : int = 60 ## Player max speed
 @export var friction : float = 0.1 ## How fast player slows down when not moving
@@ -51,16 +52,20 @@ func _physics_process(_delta):
 		#Chalk.texture.set('width', Chalk.texture.get_width()+15)
 	move_and_slide()
 	
-func _player_hit():
+func _player_hit(damage):
 	#For when player has been hit by enemy
-	print("I've been hit!")
+	print("I've been hit! " + str(damage))
+	#Lose Health
+	health -= damage
+	if health <= 0:
+		health = 0
+		_player_died()
+	
+func _player_died():
 	died = true
-	sprites.play('statue')
-	#process_mode = PROCESS_MODE_DISABLED
-	#collision.disabled = true
-	#self.name = "DeadPlayer" + str(randi())
 	SignalBus.emit_signal('playerDied')
 	#Play death animation
+	sprites.play('statue')
 	await get_tree().create_timer(3.0).timeout
 	var instance = statue.instantiate()
 	instance.position = position
@@ -69,8 +74,8 @@ func _player_hit():
 	SignalBus.emit_signal('newGeneration')
 	new_line()
 	died = false
+	health = 100
 	sprites.play('idle')
-	#process_mode = PROCESS_MODE_INHERIT
 	
 func new_line():
 	Chalk = Line2D.new()
