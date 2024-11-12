@@ -45,8 +45,9 @@ func _physics_process(_delta):
 			velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
-	if upgradeCHALK and not velocity == Vector2(0, 0) and not died:
+	if upgradeCHALK and not velocity.length() <= 3 and not died:
 		Chalk.add_point(position)
+		#Chalk.texture.set('width', Chalk.texture.get_width()+15)
 	move_and_slide()
 	
 func _player_hit():
@@ -54,7 +55,6 @@ func _player_hit():
 	print("I've been hit!")
 	died = true
 	#process_mode = PROCESS_MODE_DISABLED
-	new_line()
 	#collision.disabled = true
 	#self.name = "DeadPlayer" + str(randi())
 	SignalBus.emit_signal('playerDied')
@@ -64,12 +64,19 @@ func _player_hit():
 	instance.position = position
 	get_parent().add_child(instance)
 	position = spawn.position
+	SignalBus.emit_signal('newGeneration')
+	new_line()
 	died = false
 	#process_mode = PROCESS_MODE_INHERIT
 	
 func new_line():
 	Chalk = Line2D.new()
-	Chalk.width = 1
-	Chalk.default_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
+	Chalk.set_script(preload("res://assets/player/chalk_line.gd"))
+	Chalk.width = 3
+	#Chalk.default_color = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
+	Chalk.default_color = Color(1,1,1,0.70)
+	Chalk.texture = preload("res://assets/player/ChalkNoise.tres")
+	Chalk.texture_mode = Line2D.LINE_TEXTURE_TILE
+	Chalk.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	Chalk.z_index = -1
 	get_parent().add_child(Chalk)
