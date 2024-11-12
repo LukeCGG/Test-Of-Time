@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var spawn: Marker2D = $"../Spawn"
 @onready var statue: PackedScene = preload("res://assets/player/Statue.tscn")
 @onready var sprites: AnimatedSprite2D = $Sprites
+const INVENTORY_UI = preload("res://assets/menus_and_ui/InventoryUI.tscn")
 
 var died = false
 var Chalk = Line2D.new()
@@ -21,6 +22,12 @@ var Chalk = Line2D.new()
 func _ready():
 	SignalBus.connect('playerHit', _player_hit)
 	new_line()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("INVENTORY") and not is_instance_valid($"/root/InventoryUI"):
+		print("enable inv")
+		var inventory = INVENTORY_UI.instantiate()
+		get_tree().root.add_child(inventory)
 
 func get_input():
 	var input = Vector2()
