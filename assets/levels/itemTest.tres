@@ -7,8 +7,8 @@ size = Vector2(75, 75)
 
 [resource]
 script = ExtResource("1_jqt6r")
-name = "Item1"
-description = "Unstackable Item"
+name = "Test Item"
+description = "For Testing Item"
 texture = SubResource("PlaceholderTexture2D_ebty4")
 amount = 1
 max_stack = 1

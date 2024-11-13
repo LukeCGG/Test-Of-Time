@@ -14,7 +14,8 @@ class_name InventoryContainer extends GridContainer
 
 func _process(delta: float) -> void:
 	for slot: InventorySlot in get_children():
-		if slot.auto_update: slot.update_slot()
+		if slot.auto_update:
+			slot.update_slot()
 
 
 func _on_inventory_changed() -> void:

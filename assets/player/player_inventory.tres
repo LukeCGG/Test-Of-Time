@@ -1,19 +1,9 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://bh3tjv0cj0dc4"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=4 format=3 uid="uid://bh3tjv0cj0dc4"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_vntra"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_hwutd"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ebty4"]
-size = Vector2(75, 75)
-
-[sub_resource type="Resource" id="Resource_6i6uw"]
-script = ExtResource("1_vntra")
-name = "Item1"
-description = "Unstackable Item"
-texture = SubResource("PlaceholderTexture2D_ebty4")
-amount = 1
-max_stack = 1
+[ext_resource type="Resource" uid="uid://dni75bxr27s2t" path="res://assets/levels/itemTest.tres" id="2_twpe7"]
 
 [resource]
 script = ExtResource("2_hwutd")
-items = Array[ExtResource("1_vntra")]([SubResource("Resource_6i6uw"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_vntra")]([ExtResource("2_twpe7"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])

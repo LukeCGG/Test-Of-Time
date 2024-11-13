@@ -11,7 +11,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jo6ue"]
 size = Vector2(75, 75)
 
-[sub_resource type="Resource" id="Resource_iy1dr"]
+[sub_resource type="Resource" id="Resource_v7dxx"]
 script = ExtResource("5_wld3k")
 name = "Item1"
 description = "Unstackable Item"
@@ -22,7 +22,7 @@ max_stack = 1
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fagdd"]
 size = Vector2(75, 75)
 
-[sub_resource type="Resource" id="Resource_tg02b"]
+[sub_resource type="Resource" id="Resource_t2puq"]
 script = ExtResource("5_wld3k")
 name = "Item1"
 description = "Unstackable Item"
@@ -33,7 +33,7 @@ max_stack = 1
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_wmksh"]
 size = Vector2(50, 50)
 
-[sub_resource type="Resource" id="Resource_2jii5"]
+[sub_resource type="Resource" id="Resource_b50sh"]
 script = ExtResource("5_wld3k")
 name = "Item2"
 description = "Stackable Item"
@@ -44,7 +44,7 @@ max_stack = 24
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_m6cbd"]
 size = Vector2(50, 50)
 
-[sub_resource type="Resource" id="Resource_0aoeh"]
+[sub_resource type="Resource" id="Resource_4stcr"]
 script = ExtResource("5_wld3k")
 name = "Item2"
 description = "Stackable Item"
@@ -141,7 +141,7 @@ texture = SubResource("PlaceholderTexture2D_jo6ue")
 stretch_mode = 3
 script = ExtResource("4_lofb8")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_iy1dr")
+item = SubResource("Resource_v7dxx")
 
 [node name="Slot1" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
 custom_minimum_size = Vector2(100, 100)
@@ -157,7 +157,7 @@ texture = SubResource("PlaceholderTexture2D_fagdd")
 stretch_mode = 3
 script = ExtResource("4_lofb8")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_tg02b")
+item = SubResource("Resource_t2puq")
 
 [node name="Slot3" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
 custom_minimum_size = Vector2(100, 100)
@@ -166,7 +166,7 @@ texture = SubResource("PlaceholderTexture2D_wmksh")
 stretch_mode = 3
 script = ExtResource("4_lofb8")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_2jii5")
+item = SubResource("Resource_b50sh")
 
 [node name="Slot4" type="TextureRect" parent="InventoryContainer2" node_paths=PackedStringArray("amount_label") instance=ExtResource("2_t8xc0")]
 custom_minimum_size = Vector2(100, 100)
@@ -182,6 +182,6 @@ texture = SubResource("PlaceholderTexture2D_m6cbd")
 stretch_mode = 3
 script = ExtResource("4_lofb8")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_0aoeh")
+item = SubResource("Resource_4stcr")
 
 [node name="InventoryInfo" parent="." instance=ExtResource("7_vvu8d")]

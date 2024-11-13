@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var statue: PackedScene = preload("res://assets/player/Statue.tscn")
 @onready var sprites: AnimatedSprite2D = $Sprites
 const INVENTORY_UI = preload("res://assets/menus_and_ui/InventoryUI.tscn")
+@onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var health_loss: Label = $"HealthLoss"
 
 var died = false
 var Chalk = Line2D.new()
@@ -25,7 +27,7 @@ func _ready():
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("INVENTORY") and not is_instance_valid($"/root/InventoryUI"):
-		print("enable inv")
+		#print("enable inv")
 		var inventory = INVENTORY_UI.instantiate()
 		get_tree().root.add_child(inventory)
 
@@ -63,6 +65,8 @@ func _player_hit(damage):
 	#For when player has been hit by enemy
 	print("I've been hit! " + str(damage))
 	#Lose Health
+	health_loss.text = "-"+str(damage)
+	animation.play("HealthLoss")
 	health -= damage
 	if health <= 0:
 		health = 0

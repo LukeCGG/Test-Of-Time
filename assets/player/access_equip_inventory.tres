@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://8o63yv0uweut"]
+
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_1dd8k"]
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_j7wup"]
+
+[resource]
+script = ExtResource("2_j7wup")
+items = Array[ExtResource("1_1dd8k")]([null, null, null, null])
