@@ -41,10 +41,7 @@ func get_input():
 		input.x -= 1
 	if Input.is_action_pressed('PLAYER_RIGHT'):
 		input.x += 1
-	if Input.is_action_pressed("SPRINT"):
-		speed = 100
-	else:
-		speed = 60
+		
 	return input
 
 func _physics_process(_delta):
@@ -53,9 +50,16 @@ func _physics_process(_delta):
 	else:
 		var direction = get_input()
 		if direction.length() > 0:
+			if Input.is_action_pressed("SPRINT"):
+				speed = 100
+				sprites.play('run')
+			else:
+				speed = 60
+				sprites.play('walk')
 			velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
+			sprites.play('idle')
 	if upgradeCHALK and not velocity.length() <= 3 and not died:
 		Chalk.add_point(Vector2(position.x + 3, position.y - 2))
 		#Chalk.texture.set('width', Chalk.texture.get_width()+15)

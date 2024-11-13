@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://0huffmo5gw2l"]
 
-[ext_resource type="Texture2D" uid="uid://bdjmt7imibpte" path="res://assets/player/TempStatue.png" id="1_44fiw"]
 [ext_resource type="Script" path="res://assets/player/statue.gd" id="1_h84oi"]
+[ext_resource type="Texture2D" uid="uid://drbj3ea6b1wpd" path="res://assets/player/Statue_Aged.png" id="2_x6u1q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0y74q"]
 radius = 17.7829
@@ -15,7 +15,7 @@ script = ExtResource("1_h84oi")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
-texture = ExtResource("1_44fiw")
+texture = ExtResource("2_x6u1q")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)

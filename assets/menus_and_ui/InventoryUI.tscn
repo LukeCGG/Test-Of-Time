@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://lepcdw3na648"]
+[gd_scene load_steps=9 format=3 uid="uid://lepcdw3na648"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="1_ibodl"]
 [ext_resource type="Script" path="res://assets/menus_and_ui/inventory.gd" id="1_u5i40"]
@@ -8,9 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cropf7sr3sabs" path="res://addons/SwiftInv/Example/example_info.tscn" id="6_ci42t"]
 [ext_resource type="Resource" uid="uid://dni75bxr27s2t" path="res://assets/levels/itemTest.tres" id="6_f4cmv"]
 [ext_resource type="Resource" uid="uid://8o63yv0uweut" path="res://assets/player/access_equip_inventory.tres" id="7_b3gv4"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ebty4"]
-size = Vector2(75, 75)
 
 [node name="InventoryUI" type="CanvasLayer"]
 process_mode = 3
@@ -45,7 +42,6 @@ slot_scene = ExtResource("3_wofqo")
 [node name="Slot0" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_ebty4")
 stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")

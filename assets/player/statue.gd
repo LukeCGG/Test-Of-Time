@@ -8,9 +8,15 @@ func _ready() -> void:
 	SignalBus.connect('newGeneration', _age_statue)
 
 func _age_statue():
-	lifecycle -= 1
 	#age statue
+	lifecycle -= 1
+	if lifecycle == 3:
+		sprite.texture = load("res://assets/player/Statue_Aged.png")
+	if lifecycle == 2:
+		sprite.texture = load("res://assets/player/Statue_Damaged.png")
+	if lifecycle == 1:
+		sprite.texture = load("res://assets/player/Statue_Ruined.png")
 	if lifecycle <= 0:
 		collision.disabled = true
-		sprite.flip_v = true #crumbled statue
+		sprite.texture = load("res://assets/player/Statue_Crumbled.png")
 		#disable avoidance
