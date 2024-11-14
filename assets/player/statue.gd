@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+var Statue : bool = true ## For player to detect as interactable
+
 var lifecycle : int = 3 + 1 #Lives plus 1 for initial death
 @onready var sprite: Sprite2D = $Sprite
 @onready var collision: CollisionShape2D = $Collision

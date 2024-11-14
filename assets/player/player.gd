@@ -6,11 +6,14 @@ extends CharacterBody2D
 @onready var statue: PackedScene = preload("res://assets/player/Statue.tscn")
 @onready var sprites: AnimatedSprite2D = $Sprites
 const INVENTORY_UI = preload("res://assets/menus_and_ui/InventoryUI.tscn")
+const ACC_INV_UI = preload("res://assets/menus_and_ui/AccessInventoryUI.tscn")
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var health_loss: Label = $"HealthLoss"
+@onready var interaction_area: Area2D = $InteractionArea
 
 var died = false
 var Chalk = Line2D.new()
+var SelectedInv
 
 @export var health : int = 100
 @export_category("Movement")
@@ -26,10 +29,17 @@ func _ready():
 	new_line()
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("INVENTORY") and not is_instance_valid($"/root/InventoryUI"):
-		#print("enable inv")
-		var inventory = INVENTORY_UI.instantiate()
-		get_tree().root.add_child(inventory)
+	if event.is_action_pressed("INVENTORY"):
+		if has_node("/root/InventoryUI") or has_node("/root/AccessInventoryUI"):
+			return
+		else:
+			print("enable inv")
+			if SelectedInv != null:
+				var inventory = ACC_INV_UI.instantiate()
+				get_tree().root.add_child(inventory)
+			else:
+				var inventory = INVENTORY_UI.instantiate()
+				get_tree().root.add_child(inventory)
 
 func get_input():
 	var input = Vector2()
@@ -104,3 +114,22 @@ func new_line():
 	Chalk.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	Chalk.z_index = -1
 	get_parent().add_child(Chalk)
+
+func _on_interaction_area_body_entered(_body: Node2D) -> void:
+	for body in interaction_area.get_overlapping_bodies():
+		if "Statue" in body:
+			var StatSprite = body.get_child(0)
+			if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
+				SelectedInv = StatSprite
+				StatSprite.material.set("shader_parameter/color", Color(1,1,1,1))
+
+func _on_interaction_area_body_exited(_body: Node2D) -> void:
+	if SelectedInv != null:
+		var stillIn : bool = false
+		for body in interaction_area.get_overlapping_bodies():
+			if body.get_child(0) == SelectedInv:
+				stillIn = true
+		if stillIn == false:
+			SelectedInv.material.set("shader_parameter/color", Color(1,1,1,0))
+			SelectedInv = null
+			_on_interaction_area_body_entered(null)

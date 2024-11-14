@@ -107,9 +107,10 @@ func _on_hit_timer_timeout() -> void:
 	hitting = false
 	
 func _on_cooldown_timer_timeout() -> void:
-	for body in hit_detection.get_overlapping_bodies():
-		if body.name == "Player":
-			_on_hit_detection_body_entered(body)
+	if $DetectionZone.monitoring == true:
+		for body in hit_detection.get_overlapping_bodies():
+			if body.name == "Player":
+				_on_hit_detection_body_entered(body)
 			
 func _check_hit():
 	for body in hit_detection.get_overlapping_bodies():
