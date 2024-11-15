@@ -7,13 +7,14 @@ extends CharacterBody2D
 @onready var sprites: AnimatedSprite2D = $Sprites
 const INVENTORY_UI = preload("res://assets/menus_and_ui/InventoryUI.tscn")
 const ACC_INV_UI = preload("res://assets/menus_and_ui/AccessInventoryUI.tscn")
+const PLAYER_INVENTORY = preload("res://assets/player/player_inventory.tres")
+const ACC_INV = preload("res://assets/levels/access_inventory.tres")
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var health_loss: Label = $"HealthLoss"
 @onready var interaction_area: Area2D = $InteractionArea
-
 var died = false
 var Chalk = Line2D.new()
-var SelectedInv
+var SelectedInv = null
 
 @export var health : int = 100
 @export_category("Movement")
@@ -33,11 +34,12 @@ func _input(event: InputEvent) -> void:
 		if has_node("/root/InventoryUI") or has_node("/root/AccessInventoryUI"):
 			return
 		else:
-			print("enable inv")
 			if SelectedInv != null:
+				print("enable inv access")
 				var inventory = ACC_INV_UI.instantiate()
 				get_tree().root.add_child(inventory)
 			else:
+				print("enable inv player")
 				var inventory = INVENTORY_UI.instantiate()
 				get_tree().root.add_child(inventory)
 
@@ -93,8 +95,14 @@ func _player_died():
 	sprites.play('statue')
 	await get_tree().create_timer(3.0).timeout
 	var instance = statue.instantiate()
+	for item in PLAYER_INVENTORY.items:
+		instance.InvInst.append(item)
+	PLAYER_INVENTORY.items.clear()
+	for i in range(16):
+		PLAYER_INVENTORY.items.append(null)
 	instance.position = position
 	get_parent().add_child(instance)
+	#PLAYER_INVENTORY.items
 	position = spawn.position
 	SignalBus.emit_signal('newGeneration')
 	new_line()
@@ -116,20 +124,31 @@ func new_line():
 	get_parent().add_child(Chalk)
 
 func _on_interaction_area_body_entered(_body: Node2D) -> void:
-	for body in interaction_area.get_overlapping_bodies():
-		if "Statue" in body:
-			var StatSprite = body.get_child(0)
-			if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
-				SelectedInv = StatSprite
-				StatSprite.material.set("shader_parameter/color", Color(1,1,1,1))
+	if SelectedInv == null:
+		for body in interaction_area.get_overlapping_bodies():
+			if "Statue" in body:
+				var StatSprite = body.get_child(0)
+				if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
+					SelectedInv = StatSprite
+					StatSprite.material.set("shader_parameter/color", Color(1,1,1,1))
+				ACC_INV.items.clear()
+				ACC_INV.items.append_array(body.InvInst)
 
-func _on_interaction_area_body_exited(_body: Node2D) -> void:
+func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if SelectedInv != null:
 		var stillIn : bool = false
-		for body in interaction_area.get_overlapping_bodies():
-			if body.get_child(0) == SelectedInv:
+		for bodies in interaction_area.get_overlapping_bodies():
+			if bodies.get_child(0) == SelectedInv:
 				stillIn = true
 		if stillIn == false:
 			SelectedInv.material.set("shader_parameter/color", Color(1,1,1,0))
 			SelectedInv = null
 			_on_interaction_area_body_entered(null)
+			body.InvInst.clear()
+			for item in ACC_INV.items:
+				body.InvInst.append(item)
+			ACC_INV.items.clear()
+				
+	if "Statue" in body:
+		if body.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
+			body.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))

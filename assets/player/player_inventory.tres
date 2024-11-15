@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://bh3tjv0cj0dc4"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=6 format=3 uid="uid://bh3tjv0cj0dc4"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_vntra"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_hwutd"]
@@ -6,7 +6,15 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ebty4"]
 size = Vector2(75, 75)
 
-[sub_resource type="Resource" id="Resource_6k3sg"]
+[sub_resource type="Resource" id="Resource_hs4nc"]
+script = ExtResource("1_vntra")
+name = "Test Item"
+description = "For Testing Item"
+texture = SubResource("PlaceholderTexture2D_ebty4")
+amount = 1
+max_stack = 1
+
+[sub_resource type="Resource" id="Resource_0d3nc"]
 script = ExtResource("1_vntra")
 name = "Test Item"
 description = "For Testing Item"
@@ -16,4 +24,4 @@ max_stack = 1
 
 [resource]
 script = ExtResource("2_hwutd")
-items = Array[ExtResource("1_vntra")]([SubResource("Resource_6k3sg"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_vntra")]([SubResource("Resource_hs4nc"), SubResource("Resource_0d3nc"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
