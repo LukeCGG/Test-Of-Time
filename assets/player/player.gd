@@ -12,6 +12,10 @@ const ACC_INV = preload("res://assets/levels/access_inventory.tres")
 @onready var animation: AnimationPlayer = $AnimationPlayer
 @onready var health_loss: Label = $"HealthLoss"
 @onready var interaction_area: Area2D = $InteractionArea
+
+@onready var walls_shadows: PointLight2D = $WallsShadows
+@onready var window_shadows: PointLight2D = $WindowShadows
+
 var died = false
 var Chalk = Line2D.new()
 var SelectedInv = null
@@ -22,15 +26,20 @@ var SelectedInv = null
 @export var friction : float = 0.1 ## How fast player slows down when not moving
 @export var acceleration : float = 0.1 ## How long it takes for player to reach full speed
 
-@export_category("Upgrades")
-@export var upgradeCHALK : bool = true ## false = Not Unlocked/Active [br]Draws line where player has been
+@export_category("Upgrades") ## false = Not Unlocked/Active 
+@export var upgradeCHALK : bool = false ## Draws line where player has been
+@export var upgradeVISION : bool = false ## Further viewing distance
 
 func _ready():
 	SignalBus.connect('playerHit', _player_hit)
-	new_line()
+	if upgradeCHALK:
+		new_line()
+	if upgradeVISION:
+		walls_shadows.texture_scale = 1.4
+		window_shadows.texture_scale = 1.4
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("INVENTORY"):
+	if event.is_action_pressed("INVENTORY") and not died:
 		if has_node("/root/InventoryUI") or has_node("/root/AccessInventoryUI"):
 			return
 		else:

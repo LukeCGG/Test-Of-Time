@@ -6,7 +6,7 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ebty4"]
 size = Vector2(75, 75)
 
-[sub_resource type="Resource" id="Resource_hs4nc"]
+[sub_resource type="Resource" id="Resource_yxkr6"]
 script = ExtResource("1_vntra")
 name = "Test Item"
 description = "For Testing Item"
@@ -14,7 +14,7 @@ texture = SubResource("PlaceholderTexture2D_ebty4")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_0d3nc"]
+[sub_resource type="Resource" id="Resource_q8had"]
 script = ExtResource("1_vntra")
 name = "Test Item"
 description = "For Testing Item"
@@ -24,4 +24,4 @@ max_stack = 1
 
 [resource]
 script = ExtResource("2_hwutd")
-items = Array[ExtResource("1_vntra")]([SubResource("Resource_hs4nc"), SubResource("Resource_0d3nc"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_vntra")]([SubResource("Resource_yxkr6"), SubResource("Resource_q8had"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
