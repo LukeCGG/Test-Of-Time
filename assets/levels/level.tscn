@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://hwyutvpqoi5o"]
+[gd_scene load_steps=24 format=4 uid="uid://hwyutvpqoi5o"]
 
 [ext_resource type="Script" path="res://assets/levels/level.gd" id="1_fsfv5"]
 [ext_resource type="TileSet" uid="uid://bbbre2431dtgn" path="res://assets/tile_sets/tileset-scenes/Floors_Tileset.tres" id="2_knsnm"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb7yb5xf4lnd" path="res://assets/tile_sets/room/Walls.png" id="4_yki51"]
 [ext_resource type="Texture2D" uid="uid://dklracf8t5p2b" path="res://assets/tile_sets/room/Windows.png" id="5_uqrss"]
 [ext_resource type="PackedScene" uid="uid://cd084bgui54b4" path="res://assets/enemy/Enemy.tscn" id="6_ydtsk"]
+[ext_resource type="PackedScene" uid="uid://0huffmo5gw2l" path="res://assets/player/Statue.tscn" id="7_p8fsh"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_prfly"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -669,3 +670,6 @@ position = Vector2(576, 288)
 
 [node name="Enemy" parent="." instance=ExtResource("6_ydtsk")]
 position = Vector2(144, 288)
+
+[node name="Statue" parent="." instance=ExtResource("7_p8fsh")]
+position = Vector2(624, 248)

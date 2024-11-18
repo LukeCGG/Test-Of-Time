@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://bxjdk0j6ve0ew"]
+
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_mu2og"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sve7p"]
+size = Vector2(75, 75)
+
+[resource]
+script = ExtResource("1_mu2og")
+name = "Lantern"
+description = "Lights your path"
+texture = SubResource("PlaceholderTexture2D_sve7p")
+amount = 1
+max_stack = 1

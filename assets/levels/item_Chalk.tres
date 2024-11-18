@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://co13j4t4gb6ia"]
+
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_yasrr"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aoxy3"]
+size = Vector2(75, 75)
+
+[resource]
+script = ExtResource("1_yasrr")
+name = "Chalk"
+description = "Draw a line where you walk"
+texture = SubResource("PlaceholderTexture2D_aoxy3")
+amount = 1
+max_stack = 1

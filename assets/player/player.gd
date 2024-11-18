@@ -27,28 +27,45 @@ var SelectedInv = null
 @export var acceleration : float = 0.1 ## How long it takes for player to reach full speed
 
 @export_category("Upgrades") ## false = Not Unlocked/Active 
-@export var upgradeCHALK : bool = false ## Draws line where player has been
-@export var upgradeVISION : bool = false ## Further viewing distance
+var upgradeCHALK : bool = false ## Draws line where player has been
+var upgradeVISION : bool = false ## Further viewing distance
 
 func _ready():
 	SignalBus.connect('playerHit', _player_hit)
+	_check_upgrades()
+		
+func _check_upgrades():
+	upgradeCHALK = false
+	upgradeVISION = false
+	for i in PLAYER_INVENTORY.items:
+		if i != null:
+			if i.name == "Chalk":
+				upgradeCHALK = true
+			if i.name == "Lantern":
+				upgradeVISION = true
+
 	if upgradeCHALK:
 		new_line()
+	else:
+		Chalk = Line2D.new()
 	if upgradeVISION:
 		walls_shadows.texture_scale = 1.4
 		window_shadows.texture_scale = 1.4
-
+	else:
+		walls_shadows.texture_scale = 0.8
+		window_shadows.texture_scale = 0.8
+		
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("INVENTORY") and not died:
 		if has_node("/root/InventoryUI") or has_node("/root/AccessInventoryUI"):
 			return
 		else:
 			if SelectedInv != null:
-				print("enable inv access")
+				#print("enable inv access")
 				var inventory = ACC_INV_UI.instantiate()
 				get_tree().root.add_child(inventory)
 			else:
-				print("enable inv player")
+				#print("enable inv player")
 				var inventory = INVENTORY_UI.instantiate()
 				get_tree().root.add_child(inventory)
 
@@ -81,14 +98,14 @@ func _physics_process(_delta):
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
 			sprites.play('idle')
-	if upgradeCHALK and not velocity.length() <= 3 and not died:
+	if upgradeCHALK == true and not velocity.length() <= 3 and not died:
 		Chalk.add_point(Vector2(position.x + 3, position.y - 2))
 		#Chalk.texture.set('width', Chalk.texture.get_width()+15)
 	move_and_slide()
 	
 func _player_hit(damage):
 	#For when player has been hit by enemy
-	print("I've been hit! " + str(damage))
+	print("I've been hit!" + str(health) + " -" + str(damage))
 	#Lose Health
 	health_loss.text = "-"+str(damage)
 	animation.play("HealthLoss")
@@ -104,18 +121,18 @@ func _player_died():
 	sprites.play('statue')
 	await get_tree().create_timer(3.0).timeout
 	var instance = statue.instantiate()
+	instance.InvInst = Inventory.new()
 	for item in PLAYER_INVENTORY.items:
-		instance.InvInst.append(item)
+		instance.InvInst.items.append(item)
 	PLAYER_INVENTORY.items.clear()
 	for i in range(16):
 		PLAYER_INVENTORY.items.append(null)
 	instance.position = position
 	get_parent().add_child(instance)
-	#PLAYER_INVENTORY.items
 	position = spawn.position
 	SignalBus.emit_signal('newGeneration')
-	new_line()
 	died = false
+	_check_upgrades()
 	health = 100
 	sprites.play('idle')
 	
@@ -141,7 +158,8 @@ func _on_interaction_area_body_entered(_body: Node2D) -> void:
 					SelectedInv = StatSprite
 					StatSprite.material.set("shader_parameter/color", Color(1,1,1,1))
 				ACC_INV.items.clear()
-				ACC_INV.items.append_array(body.InvInst)
+				for i in body.InvInst.items:
+					ACC_INV.items.append(i)
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if SelectedInv != null:
@@ -153,11 +171,10 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 			SelectedInv.material.set("shader_parameter/color", Color(1,1,1,0))
 			SelectedInv = null
 			_on_interaction_area_body_entered(null)
-			body.InvInst.clear()
-			for item in ACC_INV.items:
-				body.InvInst.append(item)
+			body.InvInst.items.clear()
+			for i in ACC_INV.items:
+				body.InvInst.items.append(i)
 			ACC_INV.items.clear()
-				
 	if "Statue" in body:
 		if body.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
 			body.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))

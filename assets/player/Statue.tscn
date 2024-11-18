@@ -1,8 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://0huffmo5gw2l"]
+[gd_scene load_steps=12 format=3 uid="uid://0huffmo5gw2l"]
 
 [ext_resource type="Script" path="res://assets/player/statue.gd" id="1_h84oi"]
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="2_8xvhj"]
 [ext_resource type="Shader" path="res://assets/Stroke.gdshader" id="2_iinoa"]
-[ext_resource type="Texture2D" uid="uid://drbj3ea6b1wpd" path="res://assets/player/Statue_Aged.png" id="2_x6u1q"]
+[ext_resource type="Resource" uid="uid://co13j4t4gb6ia" path="res://assets/levels/item_Chalk.tres" id="3_mrfdt"]
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="4_3o284"]
+[ext_resource type="Resource" uid="uid://dni75bxr27s2t" path="res://assets/levels/itemTest.tres" id="4_jqk1e"]
+[ext_resource type="Resource" uid="uid://bxjdk0j6ve0ew" path="res://assets/levels/item_Lantern.tres" id="5_jrbg4"]
+[ext_resource type="Texture2D" uid="uid://db7qxhfhncv28" path="res://assets/player/Statue_Fresh.png" id="8_hj6m4"]
+
+[sub_resource type="Resource" id="Resource_nyrww"]
+script = ExtResource("4_3o284")
+items = Array[ExtResource("2_8xvhj")]([ExtResource("3_mrfdt"), ExtResource("4_jqk1e"), ExtResource("5_jrbg4"), null, null, null, null, null, null, null, null, null, null, null, null, null])
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhh0c"]
 resource_local_to_scene = true
@@ -23,11 +32,12 @@ y_sort_enabled = true
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_h84oi")
+InvInst = SubResource("Resource_nyrww")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_qhh0c")
 position = Vector2(0, -16)
-texture = ExtResource("2_x6u1q")
+texture = ExtResource("8_hj6m4")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -13)
