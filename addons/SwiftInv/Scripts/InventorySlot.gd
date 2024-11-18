@@ -35,6 +35,9 @@ var index: int:
 		if not get_parent() is InventoryContainer: return null
 		return get_parent().inventory.items[index]
 
+func _ready() -> void:
+	expand_mode = EXPAND_FIT_HEIGHT
+	stretch_mode = STRETCH_KEEP_ASPECT_CENTERED
 
 ## Updates [member texture_rect] and [member amount_label]. [br]
 ## Called with [method Node._process] by if [member auto_update] is [code]true[/code].
@@ -91,7 +94,7 @@ func _get_preview() -> Control:
 	var preview_texture_rect = TextureRect.new()
 	
 	preview_texture_rect.texture = texture
-	preview_texture_rect.expand_mode = 1
+	preview_texture_rect.expand_mode = true
 	preview_texture_rect.size = Vector2(drag_preview_size, drag_preview_size)
 	preview_texture_rect.position = -preview_texture_rect.size / 2
 	

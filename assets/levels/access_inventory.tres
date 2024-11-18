@@ -1,41 +1,26 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=9 format=3 uid="uid://b8ijp78nj8imt"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=7 format=3 uid="uid://b8ijp78nj8imt"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_0sd6a"]
+[ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="2_v5don"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_xex0t"]
+[ext_resource type="Texture2D" uid="uid://ctlj4piyuqgmi" path="res://icon.svg" id="3_t8uu4"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aoxy3"]
-size = Vector2(75, 75)
-
-[sub_resource type="Resource" id="Resource_upvoq"]
+[sub_resource type="Resource" id="Resource_fijdd"]
 script = ExtResource("1_0sd6a")
 name = "Chalk"
 description = "Draw a line where you walk"
-texture = SubResource("PlaceholderTexture2D_aoxy3")
+texture = ExtResource("2_v5don")
 amount = 1
 max_stack = 1
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ebty4"]
-size = Vector2(75, 75)
-
-[sub_resource type="Resource" id="Resource_iftf5"]
+[sub_resource type="Resource" id="Resource_de1pt"]
 script = ExtResource("1_0sd6a")
 name = "Test Item"
 description = "For Testing Item"
-texture = SubResource("PlaceholderTexture2D_ebty4")
-amount = 1
-max_stack = 1
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_sve7p"]
-size = Vector2(75, 75)
-
-[sub_resource type="Resource" id="Resource_fr0yg"]
-script = ExtResource("1_0sd6a")
-name = "Lantern"
-description = "Lights your path"
-texture = SubResource("PlaceholderTexture2D_sve7p")
+texture = ExtResource("3_t8uu4")
 amount = 1
 max_stack = 1
 
 [resource]
 script = ExtResource("2_xex0t")
-items = Array[ExtResource("1_0sd6a")]([SubResource("Resource_upvoq"), SubResource("Resource_iftf5"), SubResource("Resource_fr0yg"), null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_0sd6a")]([SubResource("Resource_fijdd"), SubResource("Resource_de1pt"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])
