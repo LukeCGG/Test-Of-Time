@@ -652,6 +652,9 @@ sources/1 = SubResource("TileSetAtlasSource_wpxxx")
 y_sort_enabled = true
 script = ExtResource("1_fsfv5")
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.785614, 0.829671, 0.861065, 1)
+
 [node name="Tiles" type="Node2D" parent="."]
 
 [node name="Floor" type="TileMapLayer" parent="Tiles"]
