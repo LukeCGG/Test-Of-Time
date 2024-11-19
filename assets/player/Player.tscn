@@ -356,6 +356,7 @@ texture = ExtResource("6_85kww")
 texture_scale = 0.25
 
 [node name="WindowShadows" type="PointLight2D" parent="."]
+position = Vector2(0, -8)
 energy = 0.5
 range_z_min = -1023
 shadow_enabled = true

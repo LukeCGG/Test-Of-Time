@@ -676,3 +676,4 @@ position = Vector2(144, 288)
 
 [node name="Statue" parent="." instance=ExtResource("7_p8fsh")]
 position = Vector2(624, 248)
+lifecycle = 3
