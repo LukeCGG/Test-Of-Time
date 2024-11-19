@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dk2dno0wfiicp"]
+[gd_scene load_steps=17 format=3 uid="uid://dk2dno0wfiicp"]
 
 [ext_resource type="Script" path="res://assets/menus_and_ui/loot_body.gd" id="1_7n4v5"]
 [ext_resource type="Script" path="res://assets/menus_and_ui/inventory.gd" id="1_42b1h"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://ctlj4piyuqgmi" path="res://icon.svg" id="10_ajxyi"]
 [ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="11_nj1ws"]
 
-[sub_resource type="Resource" id="Resource_tw6ul"]
+[sub_resource type="Resource" id="Resource_tt5lw"]
 script = ExtResource("7_8ddtf")
 name = "Chalk"
 description = "Draw a line where you walk"
@@ -22,15 +22,7 @@ texture = ExtResource("10_13rm5")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_yaofn"]
-script = ExtResource("7_8ddtf")
-name = "Chalk"
-description = "Draw a line where you walk"
-texture = ExtResource("10_13rm5")
-amount = 1
-max_stack = 1
-
-[sub_resource type="Resource" id="Resource_fivbw"]
+[sub_resource type="Resource" id="Resource_xd21i"]
 script = ExtResource("7_8ddtf")
 name = "Test Item"
 description = "For Testing Item"
@@ -38,7 +30,7 @@ texture = ExtResource("10_ajxyi")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_c2rls"]
+[sub_resource type="Resource" id="Resource_hy1mf"]
 script = ExtResource("7_8ddtf")
 name = "Lantern"
 description = "Lights your path"
@@ -88,7 +80,6 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_s64r6")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_tw6ul")
 
 [node name="Slot1" type="TextureRect" parent="Control/HBoxContainer/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_5fmks")]
 custom_minimum_size = Vector2(100, 100)
@@ -208,7 +199,7 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_s64r6")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_yaofn")
+item = SubResource("Resource_tt5lw")
 
 [node name="Slot1" type="TextureRect" parent="Control/HBoxContainer/AccessInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_5fmks")]
 custom_minimum_size = Vector2(100, 100)
@@ -216,7 +207,7 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_s64r6")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_fivbw")
+item = SubResource("Resource_xd21i")
 
 [node name="Slot2" type="TextureRect" parent="Control/HBoxContainer/AccessInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_5fmks")]
 custom_minimum_size = Vector2(100, 100)
@@ -224,7 +215,7 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_s64r6")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_c2rls")
+item = SubResource("Resource_hy1mf")
 
 [node name="Slot3" type="TextureRect" parent="Control/HBoxContainer/AccessInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_5fmks")]
 custom_minimum_size = Vector2(100, 100)

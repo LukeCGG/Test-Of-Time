@@ -5,5 +5,5 @@
 [resource]
 shader = ExtResource("1_1anmq")
 shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/radius = 0.6
-shader_parameter/softness = 0.45
+shader_parameter/radius = 0.488
+shader_parameter/softness = 0.326

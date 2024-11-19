@@ -1,31 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://lepcdw3na648"]
+[gd_scene load_steps=8 format=3 uid="uid://lepcdw3na648"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="1_ibodl"]
 [ext_resource type="Script" path="res://assets/menus_and_ui/inventory.gd" id="1_u5i40"]
 [ext_resource type="Resource" uid="uid://bh3tjv0cj0dc4" path="res://assets/player/player_inventory.tres" id="2_jaqlo"]
 [ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="3_wofqo"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="4_evanb"]
-[ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="5_165yq"]
 [ext_resource type="PackedScene" uid="uid://cropf7sr3sabs" path="res://addons/SwiftInv/Example/example_info.tscn" id="6_ci42t"]
 [ext_resource type="Resource" uid="uid://8o63yv0uweut" path="res://assets/player/access_equip_inventory.tres" id="7_b3gv4"]
-[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="7_hpkn6"]
-[ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="8_y7qwf"]
-
-[sub_resource type="Resource" id="Resource_plc3c"]
-script = ExtResource("7_hpkn6")
-name = "Chalk"
-description = "Draw a line where you walk"
-texture = ExtResource("5_165yq")
-amount = 1
-max_stack = 1
-
-[sub_resource type="Resource" id="Resource_3nyll"]
-script = ExtResource("7_hpkn6")
-name = "Lantern"
-description = "Lights your path"
-texture = ExtResource("8_y7qwf")
-amount = 1
-max_stack = 1
 
 [node name="InventoryUI" type="CanvasLayer"]
 process_mode = 3
@@ -60,132 +41,112 @@ slot_scene = ExtResource("3_wofqo")
 [node name="Slot0" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = ExtResource("5_165yq")
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_plc3c")
 
 [node name="Slot1" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-texture = ExtResource("8_y7qwf")
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_3nyll")
 
 [node name="Slot2" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot3" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot4" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot5" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot6" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot7" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot8" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot9" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot10" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot11" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot12" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot13" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot14" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 
 [node name="Slot15" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
-expand_mode = 4
-stretch_mode = 5
+stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
 

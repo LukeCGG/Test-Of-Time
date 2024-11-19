@@ -1,11 +1,11 @@
 [gd_scene load_steps=31 format=3 uid="uid://dt05g07hi24cc"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_ktc6q"]
-[ext_resource type="Texture2D" uid="uid://cobswqncgthnx" path="res://assets/player/Light.png" id="2_rm8xn"]
 [ext_resource type="Texture2D" uid="uid://304qixylcknj" path="res://assets/player/Player_idle.png" id="2_vk0ge"]
 [ext_resource type="Texture2D" uid="uid://db7qxhfhncv28" path="res://assets/player/Statue_Fresh.png" id="3_6c04c"]
 [ext_resource type="Texture2D" uid="uid://do6wwvap3o1hx" path="res://assets/player/Player_run.png" id="3_qmqof"]
 [ext_resource type="Texture2D" uid="uid://dgu5in7kox8qn" path="res://assets/player/Player_walk.png" id="5_prod3"]
+[ext_resource type="Texture2D" uid="uid://bnvktpdtvdmb" path="res://assets/player/LightSpot.png" id="6_85kww"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ckx7k"]
 atlas = ExtResource("2_vk0ge")
@@ -341,41 +341,28 @@ collision_mask = 2
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_fmsxt")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -7.0
-offset_right = 6.0
-offset_bottom = 7.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2(0, -8)
 rotation = -3.14159
 scale = Vector2(0.0911339, 0.0911339)
 zoom = Vector2(3, 3)
 
 [node name="WallsShadows" type="PointLight2D" parent="."]
-blend_mode = 2
+position = Vector2(0, -8)
+energy = 0.5
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
-texture = ExtResource("2_rm8xn")
-texture_scale = 0.8
+texture = ExtResource("6_85kww")
+texture_scale = 0.25
 
 [node name="WindowShadows" type="PointLight2D" parent="."]
-visible = false
-blend_mode = 2
+energy = 0.5
 range_z_min = -1023
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.705882)
 shadow_item_cull_mask = 3
-texture = ExtResource("2_rm8xn")
-texture_scale = 0.8
+texture = ExtResource("6_85kww")
+texture_scale = 0.25
 
 [node name="HealthLoss" type="Label" parent="."]
 visible = false
@@ -392,6 +379,20 @@ text = "- Health"
 libraries = {
 "": SubResource("AnimationLibrary_0kjuc")
 }
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -500.0
+offset_right = 500.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]

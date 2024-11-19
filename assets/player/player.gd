@@ -49,11 +49,11 @@ func _check_upgrades():
 	else:
 		Chalk = Line2D.new()
 	if upgradeVISION:
-		walls_shadows.texture_scale = 1.4
-		window_shadows.texture_scale = 1.4
+		walls_shadows.texture_scale = 0.45
+		window_shadows.texture_scale = 0.45
 	else:
-		walls_shadows.texture_scale = 0.8
-		window_shadows.texture_scale = 0.8
+		walls_shadows.texture_scale = 0.25
+		window_shadows.texture_scale = 0.25
 		
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("INVENTORY") and not died:

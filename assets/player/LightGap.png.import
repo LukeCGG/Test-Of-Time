@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cobswqncgthnx"
-path="res://.godot/imported/Light.png-763f0fa424e74c6ce745c7ab228e00ab.ctex"
+uid="uid://de4t7e8t184hl"
+path="res://.godot/imported/LightGap.png-097daa0ef0446eb44b421e8f6cb761cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/Light.png"
-dest_files=["res://.godot/imported/Light.png-763f0fa424e74c6ce745c7ab228e00ab.ctex"]
+source_file="res://assets/player/LightGap.png"
+dest_files=["res://.godot/imported/LightGap.png-097daa0ef0446eb44b421e8f6cb761cc.ctex"]
 
 [params]
 

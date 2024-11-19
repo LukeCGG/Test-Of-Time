@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://hwyutvpqoi5o"]
+[gd_scene load_steps=24 format=4 uid="uid://dgnm1rswg0g5v"]
 
 [ext_resource type="Script" path="res://assets/levels/level.gd" id="1_fsfv5"]
 [ext_resource type="TileSet" uid="uid://bbbre2431dtgn" path="res://assets/tile_sets/tileset-scenes/Floors_Tileset.tres" id="2_knsnm"]
@@ -653,7 +653,7 @@ y_sort_enabled = true
 script = ExtResource("1_fsfv5")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.785614, 0.829671, 0.861065, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Tiles" type="Node2D" parent="."]
 
