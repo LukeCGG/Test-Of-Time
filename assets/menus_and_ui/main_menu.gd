@@ -11,8 +11,7 @@ func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://assets/levels/level.tscn")
 
 func _on_options_pressed() -> void:
-	#get_tree().change_scene_to_file("res://assets/menus_and_ui/options_menu.tscn")
-	pass
+	get_tree().change_scene_to_file("res://assets/menus_and_ui/OptionsMenu.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

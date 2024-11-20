@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjs47gjhcdxwj"]
+
+[ext_resource type="PackedScene" uid="uid://c3s46qrj7m87p" path="res://addons/maaacks_options_menus/examples/scenes/menus/options_menu/master_options_menu.tscn" id="1_kafwv"]
+[ext_resource type="PackedScene" uid="uid://1e3vf4u3brfm" path="res://addons/maaacks_options_menus/examples/scenes/menus/options_menu/input/input_options_menu.tscn" id="2_cdgn2"]
+[ext_resource type="PackedScene" uid="uid://b8kb81us6g3kr" path="res://addons/maaacks_options_menus/examples/scenes/menus/options_menu/video/video_options_menu.tscn" id="3_h5yvd"]
+[ext_resource type="PackedScene" uid="uid://dmgla7rq1g2cc" path="res://addons/maaacks_options_menus/examples/scenes/menus/options_menu/audio/audio_options_menu.tscn" id="3_qmstb"]
+[ext_resource type="Theme" uid="uid://bnrptd02jqu8c" path="res://assets/menus_and_ui/Menus.tres" id="5_geuwq"]
+[ext_resource type="Script" path="res://assets/menus_and_ui/button.gd" id="6_01l13"]
+
+[node name="MasterOptionsMenu" instance=ExtResource("1_kafwv")]
+
+[node name="TabContainer" parent="." index="0"]
+current_tab = 0
+
+[node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_cdgn2")]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Video" parent="TabContainer" index="2" instance=ExtResource("3_h5yvd")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Audio" parent="TabContainer" index="3" instance=ExtResource("3_qmstb")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Button" type="Button" parent="." index="1"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -89.0
+offset_right = 192.0
+offset_bottom = -20.0
+grow_vertical = 0
+theme = ExtResource("5_geuwq")
+text = "Back"
+alignment = 0
+script = ExtResource("6_01l13")
+scene = "res://assets/menus_and_ui/MainMenu.tscn"
