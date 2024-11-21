@@ -346,6 +346,7 @@ position = Vector2(0, -8)
 rotation = -3.14159
 scale = Vector2(0.0911339, 0.0911339)
 zoom = Vector2(3, 3)
+position_smoothing_enabled = true
 
 [node name="WallsShadows" type="PointLight2D" parent="."]
 position = Vector2(0, -8)

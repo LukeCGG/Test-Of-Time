@@ -1,35 +1,51 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=9 format=3 uid="uid://b8ijp78nj8imt"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=11 format=3 uid="uid://b8ijp78nj8imt"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_0sd6a"]
-[ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="2_c1fe1"]
+[ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="2_sy2mm"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_xex0t"]
-[ext_resource type="Texture2D" uid="uid://ctlj4piyuqgmi" path="res://icon.svg" id="3_ec3jn"]
-[ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="4_bnosk"]
+[ext_resource type="Texture2D" uid="uid://ctlj4piyuqgmi" path="res://icon.svg" id="3_6lgnj"]
+[ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="4_cfocq"]
 
-[sub_resource type="Resource" id="Resource_rgu0e"]
+[sub_resource type="Resource" id="Resource_6vjx2"]
 script = ExtResource("1_0sd6a")
 name = "Chalk"
 description = "Draw a line where you walk"
-texture = ExtResource("2_c1fe1")
+texture = ExtResource("2_sy2mm")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_brm2c"]
+[sub_resource type="Resource" id="Resource_chkph"]
 script = ExtResource("1_0sd6a")
 name = "Test Item"
 description = "For Testing Item"
-texture = ExtResource("3_ec3jn")
+texture = ExtResource("3_6lgnj")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_1w37r"]
+[sub_resource type="Resource" id="Resource_l4idl"]
 script = ExtResource("1_0sd6a")
 name = "Lantern"
 description = "Lights your path"
-texture = ExtResource("4_bnosk")
+texture = ExtResource("4_cfocq")
+amount = 1
+max_stack = 1
+
+[sub_resource type="Resource" id="Resource_6dhlm"]
+script = ExtResource("1_0sd6a")
+name = "Lantern"
+description = "Lights your path"
+texture = ExtResource("4_cfocq")
+amount = 1
+max_stack = 1
+
+[sub_resource type="Resource" id="Resource_jnu6b"]
+script = ExtResource("1_0sd6a")
+name = "Chalk"
+description = "Draw a line where you walk"
+texture = ExtResource("2_sy2mm")
 amount = 1
 max_stack = 1
 
 [resource]
 script = ExtResource("2_xex0t")
-items = Array[ExtResource("1_0sd6a")]([SubResource("Resource_rgu0e"), SubResource("Resource_brm2c"), SubResource("Resource_1w37r"), null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_0sd6a")]([SubResource("Resource_6vjx2"), SubResource("Resource_chkph"), SubResource("Resource_l4idl"), null, SubResource("Resource_6dhlm"), SubResource("Resource_jnu6b"), null, null, null, null, null, null, null, null, null, null])
