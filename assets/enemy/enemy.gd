@@ -1,6 +1,8 @@
 extends CharacterBody2D
 ## Enemy AI
 
+var isEnemy : bool = true ## Identified as an Enemy
+
 @export var speed : int = 50
 var accel = 5
 var speeder = speed
@@ -17,7 +19,7 @@ var hitting = false
 
 func _ready() -> void:
 	#set_physics_process(false)
-	makepath()
+	makepath.call_deferred()
 	SignalBus.connect('playerDied', _player_died)
 	SignalBus.connect('playerHit', _player_hit)
 

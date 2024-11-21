@@ -5,3 +5,6 @@
 
 [node name="Controls" instance=ExtResource("1_b6ygu")]
 script = ExtResource("2_gjulr")
+
+[node name="VBoxContainer" parent="." index="0"]
+custom_minimum_size = Vector2(800, 280)

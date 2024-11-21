@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Test Of Time"
-run/main_scene="res://assets/levels/Level.tscn"
+run/main_scene="res://assets/levels/TestLevel01.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,16 +19,18 @@ config/icon="res://icon.svg"
 
 Global="*res://assets/globals/Globals.gd"
 SignalBus="*res://assets/globals/SignalBus.gd"
+AppConfig="*res://addons/maaacks_options_menus/base/scenes/autoloads/app_config.tscn"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SwiftInv/plugin.cfg")
+enabled=PackedStringArray("res://addons/SwiftInv/plugin.cfg", "res://addons/maaacks_options_menus/plugin.cfg")
 
 [input]
 
@@ -68,10 +70,18 @@ INTERACT={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_options_menus/base/translations/menus_translations.en.translation", "res://addons/maaacks_options_menus/base/translations/menus_translations.fr.translation")
+
 [layer_names]
 
 2d_navigation/layer_1="Moveable Area"
 2d_physics/layer_5="Player/World Collisions"
+
+[maaacks_options_menus]
+
+disable_plugin_dialogues=true
 
 [rendering]
 

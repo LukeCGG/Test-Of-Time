@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=4 uid="uid://dkn2l0cr32ngd"]
+
+[ext_resource type="Script" path="res://assets/levels/level.gd" id="1_rgh72"]
+[ext_resource type="TileSet" uid="uid://bbbre2431dtgn" path="res://assets/tile_sets/tileset-scenes/Floors_Tileset.tres" id="2_7528h"]
+[ext_resource type="Script" path="res://assets/levels/obstacles.gd" id="3_gnqy8"]
+[ext_resource type="TileSet" uid="uid://cap2v3r6fj104" path="res://assets/levels/WallsTileSet.tres" id="4_60dqh"]
+
+[node name="Level" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_rgh72")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="Floor" type="TileMapLayer" parent="Tiles"]
+z_index = -3
+tile_set = ExtResource("2_7528h")
+script = ExtResource("3_gnqy8")
+
+[node name="Walls" type="TileMapLayer" parent="Tiles"]
+z_index = -1
+tile_map_data = PackedByteArray("AAAAAAAAAAAHAAAAAAAAAAEAAAACAAUAAAAAAAIAAAAGAAAAAAAAAAcAAAAFAAEAAAAAAAgAAAACAAQAAAAAAAkAAAAHAAEAAAABAAAAAAAFAAQAAAABAAEAAAAIAAEAAAABAAgAAAAIAAAAAAABAAkAAAAFAAUAAAACAAAAAAAFAAAAAAACAAkAAAAFAAAAAAAHAAAAAAAGAAEAAAAHAAkAAAAGAAEAAAAIAAAAAAAEAAQAAAAIAAEAAAAHAAEAAAAIAAgAAAAHAAAAAAAIAAkAAAAEAAUAAAAJAAAAAAAIAAAAAAAJAAEAAAADAAUAAAAJAAIAAAAGAAAAAAAJAAcAAAAFAAEAAAAJAAgAAAADAAQAAAAJAAkAAAAIAAEAAAA=")
+tile_set = ExtResource("4_60dqh")
