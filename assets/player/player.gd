@@ -20,7 +20,8 @@ var died = false
 var Chalk = Line2D.new()
 var SelectedInv = null
 
-@export var health : int = 100
+@export var maxHealth : int = 100
+@export var health : int = maxHealth
 @export_category("Movement")
 @export var speed : int = 60 ## Player max speed
 @export var friction : float = 0.1 ## How fast player slows down when not moving
@@ -82,7 +83,7 @@ func get_input():
 		
 	return input
 
-func _physics_process(_delta):
+func _process(_delta):
 	if died:
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 	else:
@@ -105,7 +106,7 @@ func _physics_process(_delta):
 	
 func _player_hit(damage):
 	#For when player has been hit by enemy
-	print("I've been hit!" + str(health) + " -" + str(damage))
+	#print("I've been hit! " + str(health) + " -" + str(damage))
 	#Lose Health
 	health_loss.text = "-"+str(damage)
 	animation.play("HealthLoss")

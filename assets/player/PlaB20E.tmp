@@ -352,7 +352,6 @@ position = Vector2(0, -8)
 energy = 0.5
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
-shadow_item_cull_mask = 16
 texture = ExtResource("6_85kww")
 texture_scale = 0.25
 
@@ -362,7 +361,7 @@ energy = 0.5
 range_z_min = -1023
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.705882)
-shadow_item_cull_mask = 24
+shadow_item_cull_mask = 3
 texture = ExtResource("6_85kww")
 texture_scale = 0.25
 

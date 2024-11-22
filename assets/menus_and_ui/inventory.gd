@@ -7,7 +7,9 @@ var autoclose : bool = false
 
 func _ready() -> void:
 	get_tree().paused = true
-	if $Control.get_child(0).name == "HBoxContainer":
+	$Control/HealthBar.max_value = player.maxHealth
+	$Control/HealthBar.value = player.health
+	if $Control.get_child(1).name == "HBoxContainer":
 		for slot in $Control/HBoxContainer/PlayerInventory.get_children():
 			#slot.connect('slot_changed', _change_detected)
 			pass
