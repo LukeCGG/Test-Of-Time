@@ -38,7 +38,10 @@ func _physics_process(delta: float) -> void:
 		nav.target_position = position
 		velocity = Vector2(0,0)
 	elif not hitting:
-		animated_sprite_2d.play('move')
+		if not $ChaseTimer.is_stopped():
+			animated_sprite_2d.play('run')
+		else:
+			animated_sprite_2d.play('walk')
 	
 	move_and_slide()
 	

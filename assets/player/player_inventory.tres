@@ -1,8 +1,17 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=3 format=3 uid="uid://bh3tjv0cj0dc4"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://bh3tjv0cj0dc4"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_vntra"]
+[ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="2_ap4ui"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_hwutd"]
+
+[sub_resource type="Resource" id="Resource_10o41"]
+script = ExtResource("1_vntra")
+name = "Lantern"
+description = "Lights your path"
+texture = ExtResource("2_ap4ui")
+amount = 1
+max_stack = 1
 
 [resource]
 script = ExtResource("2_hwutd")
-items = Array[ExtResource("1_vntra")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_vntra")]([null, null, null, SubResource("Resource_10o41"), null, null, null, null, null, null, null, null, null, null, null, null])
