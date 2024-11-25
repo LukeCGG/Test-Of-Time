@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://6oi24vnvs38a"]
+[gd_scene load_steps=10 format=4 uid="uid://6oi24vnvs38a"]
 
 [ext_resource type="Script" path="res://assets/levels/level.gd" id="1_bqn0y"]
 [ext_resource type="Script" path="res://assets/levels/modulate_ingame.gd" id="2_tedam"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://assets/levels/obstacles.gd" id="3_gej8q"]
 [ext_resource type="TileSet" uid="uid://cap2v3r6fj104" path="res://assets/levels/WallsTileSet.tres" id="4_r5v6x"]
 [ext_resource type="PackedScene" uid="uid://bnjvnrf3rncf2" path="res://assets/enemy/EnemySpawner.tscn" id="6_btfge"]
+[ext_resource type="PackedScene" uid="uid://rpg2gxi5mxjl" path="res://assets/levels/Item.tscn" id="8_q0dao"]
 [ext_resource type="PackedScene" uid="uid://b2jlnnttnpsvg" path="res://assets/levels/Chest.tscn" id="8_vfso0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xryye"]
@@ -60,6 +61,12 @@ position = Vector2(784, 688)
 
 [node name="SpawnLocation2" type="Marker2D" parent="EnemySpawner"]
 position = Vector2(1056, 112)
+
+[node name="Item" parent="." instance=ExtResource("8_q0dao")]
+position = Vector2(84, 164)
+collision_layer = 2
+collision_mask = 3
+item = "Lantern"
 
 [connection signal="body_shape_entered" from="SafeArea" to="." method="_on_safe_area_body_shape_entered"]
 

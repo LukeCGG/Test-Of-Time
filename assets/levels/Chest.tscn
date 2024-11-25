@@ -19,6 +19,7 @@ height = 16.0
 
 [node name="Chest" type="StaticBody2D"]
 y_sort_enabled = true
+position = Vector2(0, -5)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_00yne")
