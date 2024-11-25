@@ -9,7 +9,18 @@
 
 [node name="MasterOptionsMenu" instance=ExtResource("1_kafwv")]
 
-[node name="TabContainer" parent="." index="0"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="0"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" index="0"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="TabContainer" parent="." index="1"]
 current_tab = 0
 
 [node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_cdgn2")]
@@ -26,7 +37,7 @@ visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
-[node name="Button" type="Button" parent="." index="1"]
+[node name="BackButton" type="Button" parent="." index="2"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -41,3 +52,20 @@ text = "Back"
 alignment = 0
 script = ExtResource("6_01l13")
 scene = "res://assets/menus_and_ui/MainMenu.tscn"
+
+[node name="Label" type="Label" parent="." index="3"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -209.0
+offset_top = -59.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Made by LukeCGG
+Brainstormed with Vinree"
+horizontal_alignment = 2

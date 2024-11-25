@@ -1,8 +1,6 @@
 extends CanvasLayer
 
-const PLAYER_INVENTORY = preload("res://assets/player/player_inventory.tres")
 @onready var player: CharacterBody2D = $"/root/Level/Player"
-const ITEM_CHALK = preload("res://assets/levels/item_Chalk.tres")
 var autoclose : bool = false
 
 func _ready() -> void:

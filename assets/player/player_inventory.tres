@@ -1,10 +1,37 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://bh3tjv0cj0dc4"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=11 format=3 uid="uid://bh3tjv0cj0dc4"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_vntra"]
+[ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="2_13wgl"]
 [ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="2_h4g67"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_hwutd"]
+[ext_resource type="Texture2D" uid="uid://dbvfwj4xdrrdc" path="res://assets/levels/Boots.png" id="2_k54gh"]
+[ext_resource type="Texture2D" uid="uid://dtsw8dh0p1h5f" path="res://assets/levels/Money.png" id="2_m8qvr"]
 
-[sub_resource type="Resource" id="Resource_2t5k1"]
+[sub_resource type="Resource" id="Resource_qu8ud"]
+script = ExtResource("1_vntra")
+name = "Chalk"
+description = "Draw a line where you walk"
+texture = ExtResource("2_13wgl")
+amount = 1
+max_stack = 1
+
+[sub_resource type="Resource" id="Resource_f4dpu"]
+script = ExtResource("1_vntra")
+name = "Light Boots"
+description = "Increase movement speed"
+texture = ExtResource("2_k54gh")
+amount = 1
+max_stack = 1
+
+[sub_resource type="Resource" id="Resource_xc1cc"]
+script = ExtResource("1_vntra")
+name = "Money"
+description = "Purchase things"
+texture = ExtResource("2_m8qvr")
+amount = 2
+max_stack = 8
+
+[sub_resource type="Resource" id="Resource_hcjvr"]
 script = ExtResource("1_vntra")
 name = "Lantern"
 description = "Lights your path"
@@ -14,4 +41,4 @@ max_stack = 1
 
 [resource]
 script = ExtResource("2_hwutd")
-items = Array[ExtResource("1_vntra")]([null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, SubResource("Resource_2t5k1")])
+items = Array[ExtResource("1_vntra")]([null, null, null, SubResource("Resource_qu8ud"), null, null, null, SubResource("Resource_f4dpu"), null, null, null, SubResource("Resource_xc1cc"), null, null, null, SubResource("Resource_hcjvr")])

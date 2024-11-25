@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://b7lv02quyf5ry"]
+
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_eprvy"]
+[ext_resource type="Texture2D" uid="uid://dtsw8dh0p1h5f" path="res://assets/levels/Money.png" id="2_5ilbm"]
+
+[resource]
+script = ExtResource("1_eprvy")
+name = "Money"
+description = "Purchase things"
+texture = ExtResource("2_5ilbm")
+amount = 1
+max_stack = 8

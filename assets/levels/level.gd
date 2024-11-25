@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var spawn: Marker2D = $Spawn
-@onready var safe_area: Area2D = $SafeArea
+#@onready var safe_area: Area2D = $SafeArea
 @onready var floors: TileMapLayer = $Tiles/Floor
 @export var player_scene: PackedScene = preload("res://assets/player/Player.tscn")
 

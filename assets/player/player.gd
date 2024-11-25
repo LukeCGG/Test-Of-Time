@@ -21,15 +21,19 @@ var Chalk = Line2D.new()
 var SelectedInv = null
 
 @export var maxHealth : int = 100
-@export var health : int = maxHealth
+var health : int = maxHealth
 @export_category("Movement")
-@export var speed : int = 60 ## Player max speed
+var speed = walkSpeed
+@export var walkSpeed : int = 60 ## Player max walk speed
+@export var runSpeed : int = 100 ## Player max run speed
 @export var friction : float = 0.1 ## How fast player slows down when not moving
 @export var acceleration : float = 0.1 ## How long it takes for player to reach full speed
 
 @export_category("Upgrades") ## false = Not Unlocked/Active 
 var upgradeCHALK : bool = false ## Draws line where player has been
 var upgradeVISION : bool = false ## Further viewing distance
+var upgradeSPEED : bool = false ## Increases movement speed
+var SpeedBoost : int = 40 # How much speed is added when upgrade is applied
 
 func _ready():
 	SignalBus.connect('playerHit', _player_hit)
@@ -38,12 +42,15 @@ func _ready():
 func _check_upgrades():
 	upgradeCHALK = false
 	upgradeVISION = false
+	upgradeSPEED = false
 	for i in PLAYER_INVENTORY.items:
 		if i != null:
 			if i.name == "Chalk":
 				upgradeCHALK = true
 			if i.name == "Lantern":
 				upgradeVISION = true
+			if i.name == "Light Boots":
+				upgradeSPEED = true
 
 	if upgradeCHALK:
 		new_line()
@@ -89,12 +96,20 @@ func _process(_delta):
 	else:
 		var direction = get_input()
 		if direction.length() > 0:
-			if Input.is_action_pressed("SPRINT"):
-				speed = 100
-				sprites.play('run')
+			if upgradeSPEED:
+				if Input.is_action_pressed("SPRINT"):
+					speed = 100 + SpeedBoost
+					sprites.play('run')
+				else:
+					speed = 60 + SpeedBoost
+					sprites.play('walk')
 			else:
-				speed = 60
-				sprites.play('walk')
+				if Input.is_action_pressed("SPRINT"):
+					speed = 100
+					sprites.play('run')
+				else:
+					speed = 60
+					sprites.play('walk')
 			velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
@@ -153,7 +168,7 @@ func new_line():
 func _on_interaction_area_body_entered(_body: Node2D) -> void:
 	if SelectedInv == null:
 		for body in interaction_area.get_overlapping_bodies():
-			if "Statue" in body:
+			if "Interactable" in body:
 				var StatSprite = body.get_child(0)
 				if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
 					SelectedInv = StatSprite
@@ -166,8 +181,9 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if SelectedInv != null:
 		var stillIn : bool = false
 		for bodies in interaction_area.get_overlapping_bodies():
-			if bodies.get_child(0) == SelectedInv:
-				stillIn = true
+			if bodies.get_child_count() > 0:
+				if bodies.get_child(0) == SelectedInv:
+					stillIn = true
 		if stillIn == false:
 			SelectedInv.material.set("shader_parameter/color", Color(1,1,1,0))
 			SelectedInv = null
@@ -176,6 +192,6 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 			for i in ACC_INV.items:
 				body.InvInst.items.append(i)
 			ACC_INV.items.clear()
-	if "Statue" in body:
+	if "Interactable" in body:
 		if body.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
 			body.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))

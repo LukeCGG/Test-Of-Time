@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://dgnm1rswg0g5v"]
+[gd_scene load_steps=8 format=4 uid="uid://dgnm1rswg0g5v"]
 
 [ext_resource type="Script" path="res://assets/levels/level.gd" id="1_p2h2a"]
 [ext_resource type="TileSet" uid="uid://bbbre2431dtgn" path="res://assets/tile_sets/tileset-scenes/Floors_Tileset.tres" id="2_e3dg7"]
+[ext_resource type="Script" path="res://assets/levels/modulate_ingame.gd" id="2_qbuxk"]
 [ext_resource type="Script" path="res://assets/levels/obstacles.gd" id="3_l3hih"]
 [ext_resource type="TileSet" uid="uid://cap2v3r6fj104" path="res://assets/levels/WallsTileSet.tres" id="4_pntpd"]
 [ext_resource type="PackedScene" uid="uid://cd084bgui54b4" path="res://assets/enemy/Enemy.tscn" id="5_mkdxu"]
@@ -12,9 +13,11 @@ y_sort_enabled = true
 script = ExtResource("1_p2h2a")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 light_mask = 16
 visibility_layer = 16
 color = Color(0, 0, 0, 1)
+script = ExtResource("2_qbuxk")
 
 [node name="Tiles" type="Node2D" parent="."]
 
