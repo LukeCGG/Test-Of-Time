@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 var isEnemy : bool = true ## Identified as an Enemy
 
-@export var speed : int = 50
+@export var speed : int = 30
 var accel = 5
 var speeder = speed
 @export var wanderDistance : int = 200
@@ -26,7 +26,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var direction = to_local(nav.get_next_path_position()).normalized()
 	
-	velocity = velocity.lerp(direction * speeder, accel * delta)
+	var intended_velocity = velocity.lerp(direction * speeder, accel * delta)
+	nav.set_velocity(intended_velocity)
 		
 	if direction.x < 0:
 		animated_sprite_2d.flip_h = true
@@ -37,6 +38,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite_2d.play('idle')
 		nav.target_position = position
 		velocity = Vector2(0,0)
+		return
 	elif not hitting:
 		if not $ChaseTimer.is_stopped():
 			animated_sprite_2d.play('run')
@@ -68,16 +70,17 @@ func _on_detection_zone_body_exited(body: Node2D) -> void:
 		$WanderTimer.start()
 
 func _on_chase_timer_timeout() -> void:
-	cast.target_position = playerBody.global_position - self.position
+	cast.target_position = Vector2(playerBody.global_position.x - self.position.x, playerBody.global_position.y - self.position.y - 16)
 	cast.force_raycast_update()
 	if not cast.is_colliding():
 		$WanderTimer.stop()
-		nav.target_position = playerBody.position
+		nav.target_position = Vector2(playerBody.position.x, playerBody.position.y - 16)
 	elif $WanderTimer.is_stopped():
 		$WanderTimer.start()
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
+	move_and_slide()
 
 func _on_hit_detection_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
@@ -88,7 +91,7 @@ func _on_hit_detection_body_entered(body: Node2D) -> void:
 			$HitTimer.start()
 		else:
 			speeder = speed
-		if speeder == 500:
+		if speeder == 250:
 			#print("I hit the player!")
 			SignalBus.playerHit.emit(damage)
 			hitting = false
@@ -103,7 +106,7 @@ func _on_hit_timer_timeout() -> void:
 			SignalBus.playerHit.emit(damage)
 			hitting = false
 			return
-	nav.target_position = playerBody.position
+	nav.target_position = Vector2(playerBody.position.x, playerBody.position.y - 16)
 	speeder = 1000
 	await get_tree().create_timer(0.3).timeout
 	_check_hit()

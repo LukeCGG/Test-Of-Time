@@ -1,13 +1,21 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=10 format=3 uid="uid://bh3tjv0cj0dc4"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=11 format=3 uid="uid://bh3tjv0cj0dc4"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_vntra"]
 [ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="2_13wgl"]
-[ext_resource type="Resource" uid="uid://b7lv02quyf5ry" path="res://assets/levels/item_Money.tres" id="2_f0wxc"]
 [ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="2_h4g67"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_hwutd"]
 [ext_resource type="Texture2D" uid="uid://dbvfwj4xdrrdc" path="res://assets/levels/Boots.png" id="2_k54gh"]
+[ext_resource type="Texture2D" uid="uid://dtsw8dh0p1h5f" path="res://assets/levels/Money.png" id="2_qpirq"]
 
-[sub_resource type="Resource" id="Resource_mc5w5"]
+[sub_resource type="Resource" id="Resource_g4vkt"]
+script = ExtResource("1_vntra")
+name = "Money"
+description = "Purchase things"
+texture = ExtResource("2_qpirq")
+amount = 1
+max_stack = 1
+
+[sub_resource type="Resource" id="Resource_rhmxs"]
 script = ExtResource("1_vntra")
 name = "Chalk"
 description = "Draw a line where you walk"
@@ -15,7 +23,7 @@ texture = ExtResource("2_13wgl")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_h2awi"]
+[sub_resource type="Resource" id="Resource_xlyk7"]
 script = ExtResource("1_vntra")
 name = "Lantern"
 description = "Lights your path"
@@ -23,7 +31,7 @@ texture = ExtResource("2_h4g67")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_snet5"]
+[sub_resource type="Resource" id="Resource_uquda"]
 script = ExtResource("1_vntra")
 name = "Light Boots"
 description = "Increase movement speed"
@@ -33,4 +41,4 @@ max_stack = 1
 
 [resource]
 script = ExtResource("2_hwutd")
-items = Array[ExtResource("1_vntra")]([ExtResource("2_f0wxc"), null, null, SubResource("Resource_mc5w5"), null, null, null, null, null, null, null, null, SubResource("Resource_h2awi"), null, null, SubResource("Resource_snet5")])
+items = Array[ExtResource("1_vntra")]([SubResource("Resource_g4vkt"), null, null, SubResource("Resource_rhmxs"), null, null, null, null, null, null, null, null, SubResource("Resource_xlyk7"), null, null, SubResource("Resource_uquda")])

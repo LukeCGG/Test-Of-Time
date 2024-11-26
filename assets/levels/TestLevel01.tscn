@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://6oi24vnvs38a"]
+[gd_scene load_steps=11 format=4 uid="uid://6oi24vnvs38a"]
 
 [ext_resource type="Script" path="res://assets/levels/level.gd" id="1_bqn0y"]
 [ext_resource type="Script" path="res://assets/levels/modulate_ingame.gd" id="2_tedam"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bnjvnrf3rncf2" path="res://assets/enemy/EnemySpawner.tscn" id="6_btfge"]
 [ext_resource type="PackedScene" uid="uid://rpg2gxi5mxjl" path="res://assets/levels/Item.tscn" id="8_q0dao"]
 [ext_resource type="PackedScene" uid="uid://b2jlnnttnpsvg" path="res://assets/levels/Chest.tscn" id="8_vfso0"]
+[ext_resource type="PackedScene" uid="uid://0huffmo5gw2l" path="res://assets/player/Statue.tscn" id="9_7x0yr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xryye"]
 size = Vector2(144, 160)
@@ -65,6 +66,9 @@ position = Vector2(944, 112)
 [node name="Item" parent="." instance=ExtResource("8_q0dao")]
 position = Vector2(1056, 112)
 item = "Key"
+
+[node name="Statue" parent="." instance=ExtResource("9_7x0yr")]
+position = Vector2(80, 416)
 
 [connection signal="body_shape_entered" from="SafeArea" to="." method="_on_safe_area_body_shape_entered"]
 

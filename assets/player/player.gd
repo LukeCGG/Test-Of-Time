@@ -107,7 +107,7 @@ func get_input():
 		
 	return input
 
-func _process(_delta):
+func _physics_process(_delta: float) -> void:
 	if died:
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 	else:

@@ -200,6 +200,12 @@ shape = SubResource("CircleShape2D_jhkyx")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 navigation_layers = 17
 path_postprocessing = 1
+avoidance_enabled = true
+max_neighbors = 6
+max_speed = 250.0
+avoidance_layers = 2
+avoidance_mask = 2
+debug_enabled = true
 
 [node name="WanderTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -207,7 +213,7 @@ one_shot = true
 autostart = true
 
 [node name="ChaseTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.2
 
 [node name="HitTimer" type="Timer" parent="."]
 wait_time = 0.714
