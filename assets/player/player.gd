@@ -69,9 +69,26 @@ func _input(event: InputEvent) -> void:
 			return
 		else:
 			if SelectedInv != null:
-				#print("enable inv access")
-				var inventory = ACC_INV_UI.instantiate()
-				get_tree().root.add_child(inventory)
+				if "Item" in SelectedInv:
+					var filled = false
+					for slot in PLAYER_INVENTORY.items.size():
+						var item = PLAYER_INVENTORY.items[slot]
+						if item == null and filled == false:
+							PLAYER_INVENTORY.items.remove_at(slot)
+							PLAYER_INVENTORY.items.insert(slot, SelectedInv.type)
+							filled = true
+							SelectedInv._removal()
+							return
+					if filled == false:
+						print("No space")
+						health_loss.text = "No Space"
+						animation.play("HealthLoss")
+						var inventory = ACC_INV_UI.instantiate()
+						get_tree().root.add_child(inventory)
+				else:
+					#print("enable inv access")
+					var inventory = ACC_INV_UI.instantiate()
+					get_tree().root.add_child(inventory)
 			else:
 				#print("enable inv player")
 				var inventory = INVENTORY_UI.instantiate()
@@ -165,7 +182,7 @@ func new_line():
 	Chalk.z_index = -1
 	get_parent().add_child(Chalk)
 
-func _on_interaction_area_body_entered(_body: Node2D) -> void:
+func _on_interaction_area_body_entered(_bodys: Node2D) -> void:
 	if SelectedInv == null:
 		for body in interaction_area.get_overlapping_bodies():
 			if "Interactable" in body:
@@ -178,7 +195,7 @@ func _on_interaction_area_body_entered(_body: Node2D) -> void:
 					ACC_INV.items.append(i)
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
-	if SelectedInv != null:
+	if SelectedInv != null and "Interactable" in SelectedInv.get_parent():
 		var stillIn : bool = false
 		for bodies in interaction_area.get_overlapping_bodies():
 			if bodies.get_child_count() > 0:
@@ -195,3 +212,27 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 	if "Interactable" in body:
 		if body.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
 			body.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
+
+func _on_interaction_area_area_entered(_areas: Area2D) -> void:
+	if SelectedInv == null:
+		for area in interaction_area.get_overlapping_areas():
+			if "Item" in area:
+				var StatSprite = area.get_child(0)
+				if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
+					SelectedInv = area
+					StatSprite.material.set("shader_parameter/color", Color(1,1,1,1))
+
+func _on_interaction_area_area_exited(area: Area2D) -> void:
+	if SelectedInv != null and "Item" in SelectedInv:
+		var stillIn : bool = false
+		for areas in interaction_area.get_overlapping_areas():
+			if areas.get_child_count() > 0:
+				if areas.get_child(0) == SelectedInv.get_child(0):
+					stillIn = true
+		if stillIn == false:
+			SelectedInv.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
+			SelectedInv = null
+			_on_interaction_area_area_entered(null)
+	if "Item" in area:
+		if area.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
+			area.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))

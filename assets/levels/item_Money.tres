@@ -9,4 +9,4 @@ name = "Money"
 description = "Purchase things"
 texture = ExtResource("2_5ilbm")
 amount = 1
-max_stack = 8
+max_stack = 1
