@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bbbre2431dtgn"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bbbre2431dtgn"]
 
 [ext_resource type="Texture2D" uid="uid://cay0405gn4d67" path="res://assets/tile_sets/room/Floors.png" id="1_7xl47"]
+[ext_resource type="PackedScene" uid="uid://1mmhoxl14jgw" path="res://assets/tile_sets/room/Spikes.tscn" id="2_jobfb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ccrap"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -210,8 +211,13 @@ texture = ExtResource("1_7xl47")
 7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 7:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jnual")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_gxaxt"]
+resource_name = "Spikes"
+scenes/1/scene = ExtResource("2_jobfb")
+
 [resource]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 4
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_cmpn0")
+sources/1 = SubResource("TileSetScenesCollectionSource_gxaxt")

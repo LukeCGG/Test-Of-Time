@@ -1,80 +1,80 @@
 [gd_scene load_steps=27 format=3 uid="uid://cd084bgui54b4"]
 
-[ext_resource type="Script" path="res://assets/enemy/enemy.gd" id="1_dwo61"]
-[ext_resource type="Texture2D" uid="uid://be20hxi711yv2" path="res://assets/enemy/Skelebone_idle.png" id="2_yexyl"]
-[ext_resource type="Texture2D" uid="uid://8mspdlcniv2h" path="res://assets/enemy/Skelebone_run.png" id="3_afgnr"]
-[ext_resource type="Texture2D" uid="uid://7iswcdhhs53m" path="res://assets/enemy/Skelebone_walk.png" id="4_vqih5"]
+[ext_resource type="Script" path="res://assets/enemy/skelebone.gd" id="1_r61xq"]
+[ext_resource type="Texture2D" uid="uid://be20hxi711yv2" path="res://assets/enemy/Skelebone_idle.png" id="2_052i3"]
+[ext_resource type="Texture2D" uid="uid://8mspdlcniv2h" path="res://assets/enemy/Skelebone_run.png" id="3_al5rx"]
+[ext_resource type="Texture2D" uid="uid://7iswcdhhs53m" path="res://assets/enemy/Skelebone_walk.png" id="4_dhwhg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yrvlr"]
-atlas = ExtResource("2_yexyl")
+atlas = ExtResource("2_052i3")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2u57"]
-atlas = ExtResource("2_yexyl")
+atlas = ExtResource("2_052i3")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqppg"]
-atlas = ExtResource("2_yexyl")
+atlas = ExtResource("2_052i3")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ja5k"]
-atlas = ExtResource("2_yexyl")
+atlas = ExtResource("2_052i3")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5pl8"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tveeq"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1h4ej"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o3dlx"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_axiab"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqkec"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nomvw"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1g5pv"]
-atlas = ExtResource("3_afgnr")
+atlas = ExtResource("3_al5rx")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4ooe"]
-atlas = ExtResource("4_vqih5")
+atlas = ExtResource("4_dhwhg")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ni8w"]
-atlas = ExtResource("4_vqih5")
+atlas = ExtResource("4_dhwhg")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0taor"]
-atlas = ExtResource("4_vqih5")
+atlas = ExtResource("4_dhwhg")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aebko"]
-atlas = ExtResource("4_vqih5")
+atlas = ExtResource("4_dhwhg")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eqsha"]
-atlas = ExtResource("4_vqih5")
+atlas = ExtResource("4_dhwhg")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwnvd"]
-atlas = ExtResource("4_vqih5")
+atlas = ExtResource("4_dhwhg")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ha18s"]
@@ -163,13 +163,13 @@ radius = 139.004
 [sub_resource type="CircleShape2D" id="CircleShape2D_jhkyx"]
 radius = 22.0
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Skelebone" type="CharacterBody2D"]
 position = Vector2(0, -16)
 collision_layer = 2
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_dwo61")
+script = ExtResource("1_r61xq")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ha18s")
@@ -222,20 +222,6 @@ one_shot = true
 [node name="CooldownTimer" type="Timer" parent="HitTimer"]
 wait_time = 3.0
 one_shot = true
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
 [connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]

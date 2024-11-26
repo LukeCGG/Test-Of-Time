@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dt05g07hi24cc"]
+[gd_scene load_steps=32 format=3 uid="uid://dt05g07hi24cc"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_ktc6q"]
 [ext_resource type="Texture2D" uid="uid://304qixylcknj" path="res://assets/player/Player_idle.png" id="2_vk0ge"]
@@ -314,6 +314,9 @@ _data = {
 "RESET": SubResource("Animation_ye56d")
 }
 
+[sub_resource type="Gradient" id="Gradient_3wev7"]
+colors = PackedColorArray(0.609773, 0, 0.0857368, 1, 1, 1, 1, 1)
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 disable_mode = 1
@@ -396,7 +399,33 @@ offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -8)
+emitting = false
+amount = 12
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.2
+randomness = 0.5
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -10)
+spread = 80.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color = Color(0.828312, 0, 0.0397516, 1)
+color_ramp = SubResource("Gradient_3wev7")
+
+[node name="InvinciTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="area_entered" from="InteractionArea" to="." method="_on_interaction_area_area_entered"]
 [connection signal="area_exited" from="InteractionArea" to="." method="_on_interaction_area_area_exited"]
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
+[connection signal="timeout" from="InvinciTimer" to="." method="_on_invinci_timer_timeout"]

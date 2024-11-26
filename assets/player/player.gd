@@ -19,15 +19,16 @@ const ACC_INV = preload("res://assets/levels/access_inventory.tres")
 var died = false
 var Chalk = Line2D.new()
 var SelectedInv = null
+var Invinci = false
 
 @export var maxHealth : int = 100
 var health : int = maxHealth
 @export_category("Movement")
-var speed = walkSpeed
 @export var walkSpeed : int = 60 ## Player max walk speed
 @export var runSpeed : int = 100 ## Player max run speed
 @export var friction : float = 0.1 ## How fast player slows down when not moving
 @export var acceleration : float = 0.1 ## How long it takes for player to reach full speed
+var speed = walkSpeed
 
 @export_category("Upgrades") ## false = Not Unlocked/Active 
 var upgradeCHALK : bool = false ## Draws line where player has been
@@ -140,12 +141,16 @@ func _player_hit(damage):
 	#For when player has been hit by enemy
 	#print("I've been hit! " + str(health) + " -" + str(damage))
 	#Lose Health
-	health_loss.text = "-"+str(damage)
-	animation.play("HealthLoss")
-	health -= damage
-	if health <= 0:
-		health = 0
-		_player_died()
+	if not Invinci:
+		Invinci = true
+		$CPUParticles2D.emitting = true
+		$InvinciTimer.start()
+		health_loss.text = "-"+str(damage)
+		animation.play("HealthLoss")
+		health -= damage
+		if health <= 0:
+			health = 0
+			_player_died()
 	
 func _player_died():
 	died = true
@@ -236,3 +241,6 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 	if "Item" in area:
 		if area.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
 			area.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
+
+func _on_invinci_timer_timeout() -> void:
+	Invinci = false

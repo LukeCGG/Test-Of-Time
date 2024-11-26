@@ -43,9 +43,7 @@ shape = SubResource("CapsuleShape2D_0y74q")
 
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 position = Vector2(0, -14)
-radius = 15.0
-vertices = PackedVector2Array(0, -13, -8, -10, -10, 0, -8, 12, 0, 13, 8, 12, 10, 0, 8, -10)
+radius = 12.0
 affect_navigation_mesh = true
 carve_navigation_mesh = true
-avoidance_enabled = false
 avoidance_layers = 2

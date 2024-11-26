@@ -1,0 +1,149 @@
+[gd_scene load_steps=15 format=3 uid="uid://bv6sh4glw7md5"]
+
+[ext_resource type="Script" path="res://assets/enemy/slime.gd" id="1_varsw"]
+[ext_resource type="Texture2D" uid="uid://cvnuwypw6gkxw" path="res://assets/enemy/Slime.png" id="2_enp7l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1nxl"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_78cto"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juaha"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdgre"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w01di"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elwoe"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc5u4"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lh28c"]
+atlas = ExtResource("2_enp7l")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ha18s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1nxl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_78cto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juaha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdgre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w01di")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elwoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc5u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lh28c")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yiw37"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jwbtk"]
+radius = 139.004
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yvrvn"]
+radius = 8.0
+height = 26.0
+
+[node name="Slime" type="CharacterBody2D"]
+position = Vector2(0, -10)
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_varsw")
+damage = 5
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ha18s")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.96794
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yiw37")
+disabled = true
+
+[node name="Cast" type="RayCast2D" parent="."]
+position = Vector2(0, 3)
+target_position = Vector2(0, 0)
+collision_mask = 16
+
+[node name="DetectionZone" type="Area2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="DetectionCollision" type="CollisionShape2D" parent="DetectionZone"]
+shape = SubResource("CircleShape2D_jwbtk")
+
+[node name="HitZone" type="Area2D" parent="."]
+position = Vector2(0, 3)
+
+[node name="DetectionCollision" type="CollisionShape2D" parent="HitZone"]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yvrvn")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 17
+path_postprocessing = 1
+avoidance_enabled = true
+max_neighbors = 6
+max_speed = 250.0
+avoidance_layers = 2
+avoidance_mask = 2
+debug_enabled = true
+
+[node name="WanderTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="ChaseTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="body_entered" from="DetectionZone" to="." method="_on_detection_zone_body_entered"]
+[connection signal="body_exited" from="DetectionZone" to="." method="_on_detection_zone_body_exited"]
+[connection signal="body_entered" from="HitZone" to="." method="_on_hit_detection_body_entered"]
+[connection signal="body_exited" from="HitZone" to="." method="_on_hit_zone_body_exited"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="WanderTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
