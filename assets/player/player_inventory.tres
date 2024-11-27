@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dbvfwj4xdrrdc" path="res://assets/levels/Boots.png" id="2_k54gh"]
 [ext_resource type="Texture2D" uid="uid://dtsw8dh0p1h5f" path="res://assets/levels/Money.png" id="2_qpirq"]
 
-[sub_resource type="Resource" id="Resource_u0rwr"]
+[sub_resource type="Resource" id="Resource_554y6"]
 script = ExtResource("1_vntra")
 name = "Money"
 description = "Purchase things"
@@ -15,7 +15,7 @@ texture = ExtResource("2_qpirq")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_0tx7g"]
+[sub_resource type="Resource" id="Resource_b3asm"]
 script = ExtResource("1_vntra")
 name = "Chalk"
 description = "Draw a line where you walk"
@@ -23,7 +23,7 @@ texture = ExtResource("2_13wgl")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_sop5k"]
+[sub_resource type="Resource" id="Resource_e538x"]
 script = ExtResource("1_vntra")
 name = "Lantern"
 description = "Lights your path"
@@ -31,7 +31,7 @@ texture = ExtResource("2_h4g67")
 amount = 1
 max_stack = 1
 
-[sub_resource type="Resource" id="Resource_byh5g"]
+[sub_resource type="Resource" id="Resource_d86kf"]
 script = ExtResource("1_vntra")
 name = "Light Boots"
 description = "Increase movement speed"
@@ -41,4 +41,4 @@ max_stack = 1
 
 [resource]
 script = ExtResource("2_hwutd")
-items = Array[ExtResource("1_vntra")]([SubResource("Resource_u0rwr"), null, null, SubResource("Resource_0tx7g"), null, null, null, null, null, null, null, null, SubResource("Resource_sop5k"), null, null, SubResource("Resource_byh5g")])
+items = Array[ExtResource("1_vntra")]([SubResource("Resource_554y6"), null, null, SubResource("Resource_b3asm"), null, null, null, null, null, null, null, null, SubResource("Resource_e538x"), null, null, SubResource("Resource_d86kf")])

@@ -88,7 +88,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	var ground_item = preload("res://assets/levels/Item.tscn").instantiate()
 	ground_item.item = data["base_item"].name
 	ground_item.position = $"/root/Level/Player".position
-	get_tree().get_root().add_child(ground_item)
+	get_node("/root/Level").add_child(ground_item)
 
 func _get_preview() -> Control:
 	var preview_texture_rect = TextureRect.new()

@@ -1,17 +1,25 @@
-[gd_resource type="Resource" script_class="Inventory" load_steps=5 format=3 uid="uid://b8ijp78nj8imt"]
+[gd_resource type="Resource" script_class="Inventory" load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_0sd6a"]
-[ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="2_swpm3"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/Inventory.gd" id="2_xex0t"]
+[ext_resource type="Texture2D" path="res://assets/levels/Boots.png" id="3_q0h8r"]
 
-[sub_resource type="Resource" id="Resource_x05c5"]
+[sub_resource type="Resource" id="Resource_fydlp"]
 script = ExtResource("1_0sd6a")
-name = "Chalk"
-description = "Draw a line where you walk"
-texture = ExtResource("2_swpm3")
+name = "Light Boots"
+description = "Increase movement speed"
+texture = ExtResource("3_q0h8r")
+amount = 1
+max_stack = 1
+
+[sub_resource type="Resource" id="Resource_t14aw"]
+script = ExtResource("1_0sd6a")
+name = "Light Boots"
+description = "Increase movement speed"
+texture = ExtResource("3_q0h8r")
 amount = 1
 max_stack = 1
 
 [resource]
 script = ExtResource("2_xex0t")
-items = Array[ExtResource("1_0sd6a")]([null, null, null, null, SubResource("Resource_x05c5"), null, null, null, null, null, null, null, null, null, null, null])
+items = Array[ExtResource("1_0sd6a")]([SubResource("Resource_fydlp"), null, SubResource("Resource_t14aw"), null, null, null, null, null, null, null, null, null, null, null, null, null])

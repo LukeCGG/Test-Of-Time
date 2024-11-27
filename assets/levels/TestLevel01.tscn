@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://6oi24vnvs38a"]
+[gd_scene load_steps=11 format=4 uid="uid://ijtsejg0w5b6"]
 
 [ext_resource type="Script" path="res://assets/levels/level.gd" id="1_bqn0y"]
 [ext_resource type="Script" path="res://assets/levels/modulate_ingame.gd" id="2_tedam"]
@@ -74,8 +74,8 @@ position = Vector2(80, 416)
 
 [connection signal="body_shape_entered" from="SafeArea" to="." method="_on_safe_area_body_shape_entered"]
 [connection signal="body_entered" from="Tiles/Floor/Spikes" to="Tiles/Floor/Spikes" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@72887" to="Tiles/Floor/@Area2D@72887" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@72888" to="Tiles/Floor/@Area2D@72888" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@72889" to="Tiles/Floor/@Area2D@72889" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@23980" to="Tiles/Floor/@Area2D@23980" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@23981" to="Tiles/Floor/@Area2D@23981" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@23982" to="Tiles/Floor/@Area2D@23982" method="_on_area_entered"]
 
 [editable path="EnemySpawner"]

@@ -15,7 +15,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ESC") and not get_tree().paused:
 		var pause = preload("res://assets/menus_and_ui/PauseMenu.tscn").instantiate()
-		get_tree().get_root().add_child(pause)
+		get_node("/root/Level").add_child(pause)
 
 func _on_safe_area_body_shape_entered(body_rid: RID, body: TileMapLayer, _body_shape_index: int, _local_shape_index: int) -> void:
 	pass
