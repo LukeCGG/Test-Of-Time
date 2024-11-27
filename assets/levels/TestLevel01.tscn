@@ -74,8 +74,8 @@ position = Vector2(80, 416)
 
 [connection signal="body_shape_entered" from="SafeArea" to="." method="_on_safe_area_body_shape_entered"]
 [connection signal="body_entered" from="Tiles/Floor/Spikes" to="Tiles/Floor/Spikes" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@23980" to="Tiles/Floor/@Area2D@23980" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@23981" to="Tiles/Floor/@Area2D@23981" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@23982" to="Tiles/Floor/@Area2D@23982" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@52949" to="Tiles/Floor/@Area2D@52949" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@52950" to="Tiles/Floor/@Area2D@52950" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@52951" to="Tiles/Floor/@Area2D@52951" method="_on_area_entered"]
 
 [editable path="EnemySpawner"]

@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 var Interactable : bool = true ## For player to detect as interactable
+var Statue : bool = true ## For player to detect as breakable
 
 @export var InvInst : Inventory
 #Lives plus 1 for initial death

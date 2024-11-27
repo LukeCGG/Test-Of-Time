@@ -18,9 +18,8 @@ func _input(event: InputEvent) -> void:
 		get_node("/root/Level").add_child(pause)
 
 func _on_safe_area_body_shape_entered(body_rid: RID, body: TileMapLayer, _body_shape_index: int, _local_shape_index: int) -> void:
-	pass
 	coords = body.get_coords_for_body_rid(body_rid)
-	print(coords)
+	#print(coords)
 	#floors.blockages.append(coords)
 	#print(body.get_cell_tile_data(coords))
 	#body.get_cell_tile_data(coords).set_navigation_polygon(0, null)
