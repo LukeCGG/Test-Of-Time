@@ -17,7 +17,7 @@ shader_parameter/number_of_images = Vector2(1, 1)
 radius = 4.0
 height = 16.0
 
-[node name="Chest" type="StaticBody2D"]
+[node name="Chest" type="Area2D"]
 y_sort_enabled = true
 position = Vector2(0, -5)
 collision_layer = 2

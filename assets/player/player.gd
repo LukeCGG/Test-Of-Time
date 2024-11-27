@@ -20,6 +20,7 @@ var died = false
 var Chalk = Line2D.new()
 var SelectedInv = null
 var Invinci = false
+var fullBright = true
 
 @export var maxHealth : int = 100
 var health : int = maxHealth
@@ -108,7 +109,7 @@ func get_input():
 		
 	return input
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if died:
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 	else:
@@ -132,6 +133,17 @@ func _physics_process(_delta: float) -> void:
 		else:
 			velocity = velocity.lerp(Vector2.ZERO, friction)
 			sprites.play('idle')
+			
+	if not $InvinciTimer.is_stopped():
+		if fullBright == true:
+			sprites.modulate = lerp(sprites.modulate,Color(1,1,1,0), 10 * delta)
+			if sprites.modulate.a <= 0.2:
+				fullBright = false
+		else:
+			sprites.modulate = lerp(sprites.modulate,Color(1,1,1,1), 10 * delta)
+			if sprites.modulate.a >= 0.8:
+				fullBright = true
+			
 	if upgradeCHALK == true and not velocity.length() <= 3 and not died:
 		Chalk.add_point(Vector2(position.x + 3, position.y - 2))
 		#Chalk.texture.set('width', Chalk.texture.get_width()+15)
@@ -200,7 +212,7 @@ func _on_interaction_area_body_entered(_bodys: Node2D) -> void:
 					ACC_INV.items.append(i)
 
 func _on_interaction_area_body_exited(body: Node2D) -> void:
-	if SelectedInv != null and "Interactable" in SelectedInv.get_parent():
+	if SelectedInv != null and "Interactable" in body:
 		var stillIn : bool = false
 		for bodies in interaction_area.get_overlapping_bodies():
 			if bodies.get_child_count() > 0:
@@ -226,21 +238,40 @@ func _on_interaction_area_area_entered(_areas: Area2D) -> void:
 				if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
 					SelectedInv = area
 					StatSprite.material.set("shader_parameter/color", Color(1,1,1,1))
+			if "Interactable" in area:
+				var StatSprite = area.get_child(0)
+				if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
+					SelectedInv = StatSprite
+					StatSprite.material.set("shader_parameter/color", Color(1,1,1,1))
+				ACC_INV.items.clear()
+				for i in area.InvInst.items:
+					ACC_INV.items.append(i)
 
 func _on_interaction_area_area_exited(area: Area2D) -> void:
-	if SelectedInv != null and "Item" in SelectedInv:
+	if SelectedInv != null and ("Item" in area or "Interactable" in area):
 		var stillIn : bool = false
 		for areas in interaction_area.get_overlapping_areas():
 			if areas.get_child_count() > 0:
-				if areas.get_child(0) == SelectedInv.get_child(0):
+				if areas.get_child(0) == SelectedInv:
 					stillIn = true
 		if stillIn == false:
-			SelectedInv.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
-			SelectedInv = null
-			_on_interaction_area_area_entered(null)
-	if "Item" in area:
+			if "Interactable" in SelectedInv.get_parent():
+				SelectedInv.material.set("shader_parameter/color", Color(1,1,1,0))
+				SelectedInv = null
+				_on_interaction_area_area_entered(null)
+				area.InvInst.items.clear()
+				for i in ACC_INV.items:
+					area.InvInst.items.append(i)
+				ACC_INV.items.clear()
+			else:
+				SelectedInv.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
+				SelectedInv = null
+				_on_interaction_area_area_entered(null)
+	if "Item" in area or "Interactable" in area:
 		if area.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
 			area.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
 
 func _on_invinci_timer_timeout() -> void:
 	Invinci = false
+	sprites.modulate = Color(1,1,1,1)
+	fullBright = true

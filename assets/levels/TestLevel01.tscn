@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://6oi24vnvs38a"]
+[gd_scene load_steps=11 format=4 uid="uid://6oi24vnvs38a"]
 
 [ext_resource type="Script" path="res://assets/levels/level.gd" id="1_bqn0y"]
 [ext_resource type="Script" path="res://assets/levels/modulate_ingame.gd" id="2_tedam"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://assets/levels/obstacles.gd" id="3_gej8q"]
 [ext_resource type="TileSet" uid="uid://cap2v3r6fj104" path="res://assets/levels/WallsTileSet.tres" id="4_r5v6x"]
 [ext_resource type="PackedScene" uid="uid://bnjvnrf3rncf2" path="res://assets/enemy/EnemySpawner.tscn" id="6_btfge"]
-[ext_resource type="PackedScene" uid="uid://bv6sh4glw7md5" path="res://assets/enemy/Slime.tscn" id="6_hwwqp"]
 [ext_resource type="PackedScene" uid="uid://rpg2gxi5mxjl" path="res://assets/levels/Item.tscn" id="8_q0dao"]
 [ext_resource type="PackedScene" uid="uid://b2jlnnttnpsvg" path="res://assets/levels/Chest.tscn" id="8_vfso0"]
 [ext_resource type="PackedScene" uid="uid://0huffmo5gw2l" path="res://assets/player/Statue.tscn" id="9_7x0yr"]
@@ -53,7 +52,6 @@ tile_set = ExtResource("4_r5v6x")
 position = Vector2(128, 112)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("6_btfge")]
-totalEnemies = 2
 
 [node name="SpawnLocation0" parent="EnemySpawner" index="0"]
 position = Vector2(-208, 592)
@@ -64,6 +62,9 @@ position = Vector2(784, 688)
 [node name="SpawnLocation2" type="Marker2D" parent="EnemySpawner"]
 position = Vector2(944, 112)
 
+[node name="SpawnLocation3" type="Marker2D" parent="EnemySpawner"]
+position = Vector2(368, 272)
+
 [node name="Key" parent="." instance=ExtResource("8_q0dao")]
 position = Vector2(1056, 112)
 item = "Key"
@@ -71,13 +72,10 @@ item = "Key"
 [node name="StatueAvoidanceTest" parent="." instance=ExtResource("9_7x0yr")]
 position = Vector2(80, 416)
 
-[node name="Slime" parent="." instance=ExtResource("6_hwwqp")]
-position = Vector2(368, 272)
-
 [connection signal="body_shape_entered" from="SafeArea" to="." method="_on_safe_area_body_shape_entered"]
 [connection signal="body_entered" from="Tiles/Floor/Spikes" to="Tiles/Floor/Spikes" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@182370" to="Tiles/Floor/@Area2D@182370" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@182371" to="Tiles/Floor/@Area2D@182371" method="_on_area_entered"]
-[connection signal="body_entered" from="Tiles/Floor/@Area2D@182372" to="Tiles/Floor/@Area2D@182372" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@72887" to="Tiles/Floor/@Area2D@72887" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@72888" to="Tiles/Floor/@Area2D@72888" method="_on_area_entered"]
+[connection signal="body_entered" from="Tiles/Floor/@Area2D@72889" to="Tiles/Floor/@Area2D@72889" method="_on_area_entered"]
 
 [editable path="EnemySpawner"]

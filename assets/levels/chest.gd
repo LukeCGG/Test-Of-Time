@@ -1,8 +1,8 @@
-extends StaticBody2D
+extends Area2D
 
 var Interactable : bool = true ## For player to detect as interactable
 @export var InvInst : Inventory
-@export var maxLootAmount : int = 2
+@export var maxLootAmount : int = 3
 
 #Loot Table Items
 const ITEM_BOOTS = preload("res://assets/levels/item_Boots.tres")
