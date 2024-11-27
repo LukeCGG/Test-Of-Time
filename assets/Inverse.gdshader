@@ -1,0 +1,6 @@
+shader_type canvas_item;
+
+// --- Functions --- //
+void fragment() {
+	COLOR.rgb = 1.0 - COLOR.rgb;
+}

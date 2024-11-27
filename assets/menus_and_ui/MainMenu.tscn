@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://baub3hk74iegw"]
+[gd_scene load_steps=8 format=3 uid="uid://baub3hk74iegw"]
 
 [ext_resource type="Theme" uid="uid://bnrptd02jqu8c" path="res://assets/menus_and_ui/Menus.tres" id="1_etu7u"]
 [ext_resource type="Script" path="res://assets/menus_and_ui/main_menu.gd" id="1_wcoaf"]
+[ext_resource type="Shader" path="res://assets/Inverse.gdshader" id="2_gil7i"]
+[ext_resource type="Texture2D" uid="uid://b6l3vua2a74h1" path="res://assets/menus_and_ui/TestOfTimeTitle.png" id="3_hvtxf"]
+[ext_resource type="Texture2D" uid="uid://df1q1k8jhpu6d" path="res://assets/menus_and_ui/TitleGuy.png" id="4_i7cqy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmwyv"]
+shader = ExtResource("2_gil7i")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0h7aj"]
+shader = ExtResource("2_gil7i")
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,6 +31,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="TestOfTimeTitle" type="Sprite2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_cmwyv")
+position = Vector2(257, 150)
+rotation = -0.0872665
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_hvtxf")
+
+[node name="TitleGuy" type="Sprite2D" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_0h7aj")
+position = Vector2(666, 338)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_i7cqy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

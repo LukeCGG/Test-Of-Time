@@ -79,6 +79,7 @@ radius = 8.0
 height = 26.0
 
 [node name="Slime" type="CharacterBody2D"]
+y_sort_enabled = true
 position = Vector2(0, -10)
 collision_layer = 2
 collision_mask = 3
@@ -88,10 +89,13 @@ script = ExtResource("1_varsw")
 damage = 5
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ha18s")
 animation = &"walk"
 autoplay = "walk"
 frame_progress = 0.96794
+offset = Vector2(0, 8)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -126,7 +130,6 @@ max_neighbors = 6
 max_speed = 250.0
 avoidance_layers = 2
 avoidance_mask = 2
-debug_enabled = true
 
 [node name="WanderTimer" type="Timer" parent="."]
 wait_time = 5.0

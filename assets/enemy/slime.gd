@@ -23,6 +23,7 @@ func _ready() -> void:
 	SignalBus.connect('playerDied', _player_died)
 
 func _physics_process(delta: float) -> void:
+	await get_tree().physics_frame
 	var direction = to_local(nav.get_next_path_position()).normalized()
 	
 	var intended_velocity = velocity.lerp(direction * speeder, accel * delta)
@@ -87,5 +88,5 @@ func _player_died():
 	$HitZone.monitoring = false
 	await get_tree().create_timer(4).timeout
 	$DetectionZone.monitoring = true
-	$HitDetection.monitoring = true
+	$HitZone.monitoring = true
 	$WanderTimer.start()

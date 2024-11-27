@@ -24,6 +24,7 @@ func _ready() -> void:
 	SignalBus.connect('playerHit', _player_hit)
 
 func _physics_process(delta: float) -> void:
+	await get_tree().physics_frame
 	var direction = to_local(nav.get_next_path_position()).normalized()
 	
 	var intended_velocity = velocity.lerp(direction * speeder, accel * delta)
