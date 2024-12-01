@@ -4,18 +4,25 @@ extends Node2D
 #@onready var safe_area: Area2D = $SafeArea
 @onready var floors: TileMapLayer = $Tiles/Floor
 @export var player_scene: PackedScene = preload("res://assets/player/Player.tscn")
-
+const PLAYER_INVENTORY = preload("res://assets/player/player_inventory.tres")
 var coords
 
 func _ready() -> void:
-	var player = player_scene.instantiate()
-	player.position = spawn.position
-	add_child(player)
+	PLAYER_INVENTORY.items.clear()
+	for num in range(16):
+		PLAYER_INVENTORY.items.append(null)
+	#var player = player_scene.instantiate()
+	#player.position = spawn.position
+	#add_child(player)
+	pass
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ESC") and not get_tree().paused:
-		var pause = preload("res://assets/menus_and_ui/PauseMenu.tscn").instantiate()
-		get_node("/root/Level").add_child(pause)
+		if has_node("/root/Level/PauseMenu"):
+			return
+		else:
+			var pause = preload("res://assets/menus_and_ui/PauseMenu.tscn").instantiate()
+			get_node("/root/Level").add_child(pause)
 
 func _on_safe_area_body_shape_entered(body_rid: RID, body: TileMapLayer, _body_shape_index: int, _local_shape_index: int) -> void:
 	coords = body.get_coords_for_body_rid(body_rid)

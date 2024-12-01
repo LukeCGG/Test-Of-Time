@@ -10,7 +10,7 @@ const ITEM_CHALK = preload("res://assets/levels/item_Chalk.tres")
 const ITEM_LANTERN = preload("res://assets/levels/item_Lantern.tres")
 const ITEM_MONEY = preload("res://assets/levels/item_Money.tres")
 
-func _ready() -> void:
+func _load_inventory() -> void:
 	if InvInst == null:
 		InvInst = Inventory.new()
 		for i in range(16):
@@ -27,3 +27,6 @@ func _ready() -> void:
 					InvInst.items.append(ITEM_MONEY)
 			else:
 				InvInst.items.append(null)
+
+func _ready() -> void:
+	_load_inventory()

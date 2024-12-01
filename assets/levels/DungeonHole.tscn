@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://tpt30s0t43jr"]
+
+[ext_resource type="Shader" path="res://assets/Stroke.gdshader" id="1_d28ab"]
+[ext_resource type="Texture2D" uid="uid://cm5ewy3uikv0h" path="res://assets/levels/hole.png" id="1_g8jeb"]
+[ext_resource type="Script" path="res://assets/levels/dungeon_hole.gd" id="1_t1e6n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i688q"]
+resource_local_to_scene = true
+shader = ExtResource("1_d28ab")
+shader_parameter/color = Color(1, 1, 1, 0)
+shader_parameter/width = 1.0
+shader_parameter/pattern = 0
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g67hj"]
+radius = 8.0
+height = 28.0
+
+[node name="DungeonHole" type="Area2D"]
+z_index = -1
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_t1e6n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_i688q")
+texture = ExtResource("1_g8jeb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_g67hj")

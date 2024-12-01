@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1wrefpua5yhm"
+path="res://.godot/imported/epic-dungeon-beat - kaden_cook-28038346.mp3-60da0552cff4830845e9a272850023d6.mp3str"
+
+[deps]
+
+source_file="res://assets/music/epic-dungeon-beat - kaden_cook-28038346.mp3"
+dest_files=["res://.godot/imported/epic-dungeon-beat - kaden_cook-28038346.mp3-60da0552cff4830845e9a272850023d6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

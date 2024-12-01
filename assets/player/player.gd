@@ -38,6 +38,7 @@ var upgradeSPEED : bool = false ## Increases movement speed
 var SpeedBoost : int = 40 # How much speed is added when upgrade is applied
 
 func _ready():
+	#print(get_path())
 	SignalBus.connect('playerHit', _player_hit)
 	_check_upgrades()
 		
@@ -53,6 +54,8 @@ func _check_upgrades():
 				upgradeVISION = true
 			if i.name == "Light Boots":
 				upgradeSPEED = true
+			if i.name == "Health Potion":
+				pass
 
 	if upgradeCHALK:
 		new_line()
@@ -66,7 +69,7 @@ func _check_upgrades():
 		window_shadows.texture_scale = 0.25
 		
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("INVENTORY") and not died:
+	if event.is_action_pressed("INTERACT") and not died:
 		if has_node("/root/InventoryUI") or has_node("/root/AccessInventoryUI"):
 			return
 		else:
@@ -87,6 +90,8 @@ func _input(event: InputEvent) -> void:
 						animation.play("HealthLoss")
 						var inventory = ACC_INV_UI.instantiate()
 						get_tree().root.add_child(inventory)
+				elif "Hole" in SelectedInv:
+					SelectedInv._attempt_leave()
 				else:
 					#print("enable inv access")
 					var inventory = ACC_INV_UI.instantiate()
@@ -154,15 +159,16 @@ func _player_hit(damage):
 	#print("I've been hit! " + str(health) + " -" + str(damage))
 	#Lose Health
 	if not Invinci:
-		Invinci = true
-		$CPUParticles2D.emitting = true
-		$InvinciTimer.start()
 		health_loss.text = "-"+str(damage)
 		animation.play("HealthLoss")
 		health -= damage
 		if health <= 0:
 			health = 0
 			_player_died()
+		else:
+			Invinci = true
+			$CPUParticles2D.emitting = true
+			$InvinciTimer.start()
 	
 func _player_died():
 	died = true
@@ -233,7 +239,7 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 func _on_interaction_area_area_entered(_areas: Area2D) -> void:
 	if SelectedInv == null:
 		for area in interaction_area.get_overlapping_areas():
-			if "Item" in area:
+			if "Item" in area or "Hole" in area:
 				var StatSprite = area.get_child(0)
 				if StatSprite.material.get("shader_parameter/color") == Color(1,1,1,0):
 					SelectedInv = area
@@ -248,7 +254,7 @@ func _on_interaction_area_area_entered(_areas: Area2D) -> void:
 					ACC_INV.items.append(i)
 
 func _on_interaction_area_area_exited(area: Area2D) -> void:
-	if SelectedInv != null and ("Item" in area or "Interactable" in area):
+	if SelectedInv != null and ("Item" in area or "Interactable" in area or "Hole" in area):
 		var stillIn : bool = false
 		for areas in interaction_area.get_overlapping_areas():
 			if areas.get_child_count() > 0:
@@ -267,7 +273,7 @@ func _on_interaction_area_area_exited(area: Area2D) -> void:
 				SelectedInv.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
 				SelectedInv = null
 				_on_interaction_area_area_entered(null)
-	if "Item" in area or "Interactable" in area:
+	if "Item" in area or "Interactable" in area or "Hole" in area:
 		if area.get_child(0).material.get("shader_parameter/color") == Color(1,1,1,1):
 			area.get_child(0).material.set("shader_parameter/color", Color(1,1,1,0))
 

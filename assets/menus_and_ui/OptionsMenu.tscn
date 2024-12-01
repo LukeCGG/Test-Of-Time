@@ -21,14 +21,14 @@ grow_vertical = 2
 color = Color(0.169245, 0.169245, 0.169245, 1)
 
 [node name="TabContainer" parent="." index="1"]
-current_tab = 0
+current_tab = 1
 
 [node name="Controls" parent="TabContainer" index="1" instance=ExtResource("2_cdgn2")]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
 [node name="Video" parent="TabContainer" index="2" instance=ExtResource("3_h5yvd")]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 

@@ -343,13 +343,6 @@ collision_mask = 2
 position = Vector2(0, -15)
 shape = SubResource("CircleShape2D_fmsxt")
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(0, -8)
-rotation = -3.14159
-scale = Vector2(0.0911339, 0.0911339)
-zoom = Vector2(3, 3)
-position_smoothing_enabled = true
-
 [node name="WallsShadows" type="PointLight2D" parent="."]
 position = Vector2(0, -8)
 energy = 0.5
@@ -371,6 +364,7 @@ texture_scale = 0.25
 
 [node name="HealthLoss" type="Label" parent="."]
 visible = false
+z_index = 1
 offset_left = 2.0
 offset_top = -40.0
 offset_right = 315.0

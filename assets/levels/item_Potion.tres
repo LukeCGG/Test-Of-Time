@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://c6vtebkktb54"]
+
+[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="1_m2hsm"]
+[ext_resource type="Texture2D" uid="uid://cstyj73ysest5" path="res://assets/levels/HealthPotion.png" id="2_rup6s"]
+
+[resource]
+script = ExtResource("1_m2hsm")
+name = "Health Potion"
+description = "Provides you some health recovery"
+texture = ExtResource("2_rup6s")
+amount = 1
+max_stack = 1

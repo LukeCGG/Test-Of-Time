@@ -1,5 +1,7 @@
 extends Control
 
+const LOADING_SCREEN = preload("res://assets/menus_and_ui/LoadingScreen.tscn")
+
 func _ready() -> void:
 	$MarginContainer/VBoxContainer/Play.grab_focus()
 
@@ -8,7 +10,7 @@ func _ready() -> void:
 #		pass
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://assets/levels/TestLevel01.tscn")
+	LoadManager.load_scene("res://assets/levels/TestLevel01.tscn")
 
 func _on_options_pressed() -> void:
 	get_tree().change_scene_to_file("res://assets/menus_and_ui/OptionsMenu.tscn")

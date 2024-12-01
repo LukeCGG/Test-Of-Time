@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://lepcdw3na648"]
+[gd_scene load_steps=11 format=3 uid="uid://lepcdw3na648"]
 
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryContainer.gd" id="1_ibodl"]
 [ext_resource type="Script" path="res://assets/menus_and_ui/inventory.gd" id="1_u5i40"]
@@ -8,45 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://d2inajmo8ahsj" path="res://addons/SwiftInv/Example/example_slot.tscn" id="3_wofqo"]
 [ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventorySlot.gd" id="4_evanb"]
 [ext_resource type="PackedScene" uid="uid://cropf7sr3sabs" path="res://addons/SwiftInv/Example/example_info.tscn" id="6_ci42t"]
-[ext_resource type="Script" path="res://addons/SwiftInv/Scripts/InventoryItem.gd" id="6_s8oaf"]
 [ext_resource type="Resource" uid="uid://8o63yv0uweut" path="res://assets/player/access_equip_inventory.tres" id="7_b3gv4"]
-[ext_resource type="Texture2D" uid="uid://bmpl4rb3d1rij" path="res://assets/levels/Lantern.png" id="8_omhpu"]
-[ext_resource type="Texture2D" uid="uid://dtsw8dh0p1h5f" path="res://assets/levels/Money.png" id="9_fbdci"]
-[ext_resource type="Texture2D" uid="uid://chlhyuq4gebwu" path="res://assets/levels/Chalk.png" id="9_ua28n"]
-[ext_resource type="Texture2D" uid="uid://dbvfwj4xdrrdc" path="res://assets/levels/Boots.png" id="10_8qh81"]
 [ext_resource type="Script" path="res://assets/menus_and_ui/drop.gd" id="14_tdoj5"]
-
-[sub_resource type="Resource" id="Resource_fvxy8"]
-script = ExtResource("6_s8oaf")
-name = "Money"
-description = "Purchase things"
-texture = ExtResource("9_fbdci")
-amount = 1
-max_stack = 1
-
-[sub_resource type="Resource" id="Resource_ymdpw"]
-script = ExtResource("6_s8oaf")
-name = "Chalk"
-description = "Draw a line where you walk"
-texture = ExtResource("9_ua28n")
-amount = 1
-max_stack = 1
-
-[sub_resource type="Resource" id="Resource_86apd"]
-script = ExtResource("6_s8oaf")
-name = "Lantern"
-description = "Lights your path"
-texture = ExtResource("8_omhpu")
-amount = 1
-max_stack = 1
-
-[sub_resource type="Resource" id="Resource_m4q83"]
-script = ExtResource("6_s8oaf")
-name = "Light Boots"
-description = "Increase movement speed"
-texture = ExtResource("10_8qh81")
-amount = 1
-max_stack = 1
 
 [node name="InventoryUI" type="CanvasLayer"]
 process_mode = 3
@@ -95,7 +58,6 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_fvxy8")
 
 [node name="Slot1" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
@@ -117,7 +79,6 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_ymdpw")
 
 [node name="Slot4" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
@@ -181,7 +142,6 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_86apd")
 
 [node name="Slot13" type="TextureRect" parent="Control/PlayerInventory" node_paths=PackedStringArray("amount_label") instance=ExtResource("3_wofqo")]
 custom_minimum_size = Vector2(100, 100)
@@ -203,7 +163,6 @@ layout_mode = 2
 stretch_mode = 3
 script = ExtResource("4_evanb")
 amount_label = NodePath("AmountLabel")
-item = SubResource("Resource_m4q83")
 
 [node name="EquipInventory" type="GridContainer" parent="Control"]
 visible = false

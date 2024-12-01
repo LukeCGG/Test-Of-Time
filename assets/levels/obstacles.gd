@@ -1,7 +1,7 @@
 extends TileMapLayer
 
-@onready var walls: TileMapLayer = $"../Walls"
-@onready var safe_area: Area2D = $"../../SafeArea"
+@onready var walls: TileMapLayer = $"../Windows"
+#@onready var safe_area: Area2D = $"../../SafeArea"
 var blockages : Array = []
 
 func _ready() -> void:

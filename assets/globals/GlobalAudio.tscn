@@ -1,0 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://dcpuo3v1prvh4"]
+
+[ext_resource type="Script" path="res://assets/globals/global_audio.gd" id="1_wkdxw"]
+[ext_resource type="AudioStream" uid="uid://dbnbkp3ocb4tt" path="res://assets/music/8-bit-dungeon - kaden_cook-28038346.mp3" id="2_bagxp"]
+[ext_resource type="AudioStream" uid="uid://d1wrefpua5yhm" path="res://assets/music/epic-dungeon-beat - kaden_cook-28038346.mp3" id="3_t3i8e"]
+[ext_resource type="AudioStream" uid="uid://dqxedwl8itlwv" path="res://assets/music/hyper-adventure-music - Sonican.mp3" id="4_eslog"]
+
+[node name="GlobalAudio" type="AudioStreamPlayer"]
+process_mode = 3
+volume_db = -20.0
+script = ExtResource("1_wkdxw")
+playlist = [ExtResource("2_bagxp"), ExtResource("3_t3i8e"), ExtResource("4_eslog")]
+
+[connection signal="finished" from="." to="." method="_on_finished"]
